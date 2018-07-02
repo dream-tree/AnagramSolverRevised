@@ -1,8 +1,10 @@
 # AnagramSolverAdvanced
+
 <p>EDIT:</p>
-<p>AnagramSolverAdvanced project based on the AnagramSolver project. </p>
-<p>Planned revisions: remodelling entities (done), adding new entries to the database (partly done), removing/updating user entries (TODO). </p>
-<p>This is na early stage of this project. </p>
+<p>AnagramSolverAdvanced project based on the AnagramSolver project.</p>
+<p>Planned revisions: remodelling entities (done), allowing addition new entries to the database (partly done), allowing removal/update user entries (TODO).</p>
+<p>This is na early stage of this project.</p>
+
 ---
 
 Web based app serving as english anagrams solver. It takes text input and finds out all possible word combinations (anagrams) using english dictionary.
