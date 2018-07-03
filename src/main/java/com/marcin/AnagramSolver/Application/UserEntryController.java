@@ -48,8 +48,8 @@ public class UserEntryController {
 
 	/**
 	 * Gets user input (string of anagrams), processes it for appropriate validation
-	 * and 
-	 * 
+	 * and calls DAO method for saving new entries in the database (if validation passed)
+	 * or returns an error page (if validation failed).
 	 * @param userEntry object holding user data typed into a text field
 	 * @param thebindingResult the holder for data binder // TODO
 	 */
@@ -72,15 +72,15 @@ public class UserEntryController {
 		}
 	}
 		
-	/**
-	 * Supports check out for non-empty input in the search bar.
+/*	*//**
+	 * Supports validation on non-empty input in the search bar.
 	 * @param dataBinder SpringFramewrok WebDataBinder object
-	 */
-/*	@InitBinder                                                                             
+	 *//*
+	@InitBinder                                                                             
 	public void initBinder(WebDataBinder dataBinder) {
 	     StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);   
 	     dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);                
-	}    */ 
+	}  */   
 	
 	/**
 	 * Splits input (string of anagrams) into separate words, alphabetizes first array element 

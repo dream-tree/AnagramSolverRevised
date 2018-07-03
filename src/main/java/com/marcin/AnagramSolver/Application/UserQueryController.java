@@ -71,7 +71,7 @@ public class UserQueryController {
 	}
 		
 	/**
-	 * Supports check out for non-empty input in the search bar.
+	 * Supports validation on non-empty input in the search bar.
 	 * @param dataBinder SpringFramewrok WebDataBinder object
 	 */
 	@InitBinder                                                                             

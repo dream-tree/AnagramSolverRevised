@@ -67,12 +67,12 @@ public class Alphabetized {
 	 * If no list exists, it creates one.
 	 * @param tempAnagram anagram word to be added to the list of anagrams
 	 */
-    public void add(Anagram tempAnagram) {                 
-        if(anagrams == null) {
-        	anagrams = new ArrayList<>();
-        }
-        anagrams.add(tempAnagram);
-        	tempAnagram.setAlphabetized(this);           
+	public void add(Anagram tempAnagram) {                 
+		if(anagrams == null) {
+			anagrams = new ArrayList<>();
+		}
+		anagrams.add(tempAnagram);
+		tempAnagram.setAlphabetized(this);           
 	}
 	
 	public int getId() {

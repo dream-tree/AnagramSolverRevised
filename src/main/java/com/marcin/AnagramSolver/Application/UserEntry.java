@@ -15,7 +15,8 @@ import org.springframework.stereotype.Component;
 public class UserEntry {
 
 	/**
-	 * Serves as an input data holder for a single string of anagrams to be added to the database.
+	 * Serves as an input data holder for a single string of anagrams 
+	 * to be added to the database after process of validation.
 	 * User input is splitted into separate anagrams and validated in the further process.
 	 */
 	@NotNull
