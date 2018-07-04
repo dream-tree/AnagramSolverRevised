@@ -1,5 +1,6 @@
 package com.marcin.AnagramSolver.Application;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,7 +46,7 @@ public class Anagram {
 	@Column(name="anagram_word")
 	private String anagramWord;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="alphabetized_id")
 	private Alphabetized alphabetized;
 		

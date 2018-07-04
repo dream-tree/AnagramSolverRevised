@@ -3,6 +3,7 @@ package com.marcin.AnagramSolver.Application;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -51,7 +52,7 @@ public class Alphabetized {
 	/**
 	 * String of anagrams related to a given alphabetized word.
 	 */
-	@OneToMany(mappedBy="alphabetized")
+	@OneToMany(mappedBy="alphabetized", cascade=CascadeType.ALL)
 	private List<Anagram> anagrams;
 		
 	public Alphabetized() {

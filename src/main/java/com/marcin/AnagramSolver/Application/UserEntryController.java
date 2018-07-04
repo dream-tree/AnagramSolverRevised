@@ -65,12 +65,26 @@ public class UserEntryController {
 			userAnagrams = splitted.get(s);
 		}
 		if(userAlphabetized.equals("error")) {
-			return "results2";
+			return "resultsError";
 		} else {
-			anagramsListDAO.saveAnagramsList(userAlphabetized, userAnagrams);
-			return "results3";
+			// final confirmation: entry does not exist in the database (user might change sth browsing pages to and forth)
+			if(anagramsListDAO.getAnagramsList(userAlphabetized) != null) {
+				return "resultsError";
+			} else {
+				anagramsListDAO.saveAnagramsList(userAlphabetized, userAnagrams);
+				return "resultsNewEntry";
+			}
 		}
 	}
+/*		} else {
+			boolean notInDatabaseConfirmation = anagramsListDAO.saveAnagramsList(userAlphabetized, userAnagrams);
+			if(notInDatabaseConfirmation)
+				return "resultsNewEntry";
+			else 
+				return "resultsError";
+		}*/
+	
+	
 		
 /*	*//**
 	 * Supports validation on non-empty input in the search bar.

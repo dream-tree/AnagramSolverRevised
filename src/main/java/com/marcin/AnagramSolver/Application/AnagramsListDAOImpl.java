@@ -44,7 +44,7 @@ public class AnagramsListDAOImpl implements AnagramsListDAO {
 			tempList = tempAlphabetized.getAnagrams();
 			session.getTransaction().commit();			
 		} catch (Exception ex) {
-			LOGGER.info("Hibernate database query.", ex.toString(), ex);
+			LOGGER.info("Hibernate database query error.", ex.toString(), ex);
 		} finally {
 			session.close();
 		}	
@@ -55,29 +55,29 @@ public class AnagramsListDAOImpl implements AnagramsListDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void saveAnagramsList(String newEntryAlphabetized, List<String> newEntryAnagramsString) {
+	public void saveAnagramsList(String userAlphabetizedString, List<String> userListOfStrings) {
 		SessionFactory sessionFactory = HibernateUtility2.getInstance();			
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			session.beginTransaction();	
-			Alphabetized alphabetized = new Alphabetized(1, newEntryAlphabetized);
-			List<Anagram> list = new ArrayList<>();
-			for(String singleAnagram : newEntryAnagramsString) {
-				Anagram newEntryAnagram = new Anagram(1, singleAnagram);
-				list.add(newEntryAnagram);
-				alphabetized.add(newEntryAnagram);
-		//		session.save(newEntryAnagram);	
-			}
-			alphabetized.setAnagrams(list);
-			session.save(alphabetized);	
-			for(Anagram anagram : list) {
-				session.save(anagram);	
-			}
-			session.getTransaction().commit();			
+			Alphabetized userAlphabetizedObject = new Alphabetized(1, userAlphabetizedString);
+			List<Anagram> listOfAngrams = createListOfAngrams(userAlphabetizedObject, userListOfStrings);
+			session.save(userAlphabetizedObject); 
+			session.getTransaction().commit();		
 		} catch (Exception ex) {
-			LOGGER.info("Hibernate database save.", ex.toString(), ex);
+			LOGGER.info("Hibernate database save error.", ex.toString(), ex);
 		} finally {
-			session.close();
-		}		
+			session.close();	
+		}
+	}
+	
+	public List<Anagram> createListOfAngrams(Alphabetized userAlphabetizedObject, List<String> userListOfStrings) {
+		List<Anagram> listOfAngrams = new ArrayList<>();
+		for(String singleString : userListOfStrings) {
+			Anagram userSingleAnagram = new Anagram(1, singleString);
+			listOfAngrams.add(userSingleAnagram);
+			userAlphabetizedObject.add(userSingleAnagram);
+		}
+		return listOfAngrams;
 	}
 }
