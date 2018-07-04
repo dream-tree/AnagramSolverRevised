@@ -10,7 +10,6 @@
 <title>Main Menu</title>
 </head>
 <body>
-
 	<h1>
 		<strong>Temporary output page - PASSED.</strong>
 	</h1>
@@ -27,6 +26,5 @@
 		<input type="submit" value="Go back"/>
 	</form:form>
 	<br> --%>
-	
 </body>
 </html>
