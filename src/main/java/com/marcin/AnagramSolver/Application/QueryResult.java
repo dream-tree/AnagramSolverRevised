@@ -21,7 +21,7 @@ public class QueryResult {
 	 * User input data holder.
 	 */
 	@NotNull
-	@Pattern(regexp = "[a-zA-Z]{3,}", message="Only letters allowed (3 minimum).")
+	@Pattern(regexp = "[a-zA-Z]{3,}", message="Only letters allowed (3 or more).")
 	private String query;
 	
 	/**

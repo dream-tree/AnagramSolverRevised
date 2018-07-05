@@ -1,6 +1,7 @@
 package com.marcin.AnagramSolver.Application;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,8 @@ public class UserEntry {
 	 * User input is splitted into separate anagrams and validated in the further process.
 	 */
 	@NotNull
+	@Pattern(regexp="[a-zA-Z]{3,}(\\s+[a-zA-Z]{3,})*", 
+				message="Only letters allowed. Only three or more letters words allowed.")
 	private String optionalAnagramsString;
 	
 /*	*//**

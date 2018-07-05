@@ -5,11 +5,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -54,7 +60,12 @@ public class UserEntryController {
 	 * @param thebindingResult the holder for data binder // TODO
 	 */
 	@RequestMapping("/validateNewEntry")
-	public String processForm(@ModelAttribute("userNewEntry") UserEntry userEntry) {		
+	public String processForm(@Valid @ModelAttribute("userNewEntry") UserEntry userEntry, 
+			BindingResult bindingResult) {	
+		if(bindingResult.hasErrors()) {
+			System.err.println("BINDING RESULTS ERROR!!!");
+			return "addForm";
+		}
 		String userAnagramsString = userEntry.getOptionalAnagramsString();
 		Map<String, List<String>> splitted = splitAndValidateEntry(userAnagramsString);		
 		splitted.forEach((x, y) -> System.out.println(x + " " + y));		
@@ -64,37 +75,26 @@ public class UserEntryController {
 			userAlphabetized = s;
 			userAnagrams = splitted.get(s);
 		}
-		if(userAlphabetized.equals("error")) {
+		if(userAlphabetized.equals("error") 
+				// final confirmation: entry does not exist in the database 
+				// (user might have changed sth browsing the pages to and forth)
+				|| anagramsListDAO.getAnagramsList(userAlphabetized) != null ){
 			return "resultsError";
 		} else {
-			// final confirmation: entry does not exist in the database (user might change sth browsing pages to and forth)
-			if(anagramsListDAO.getAnagramsList(userAlphabetized) != null) {
-				return "resultsError";
-			} else {
-				anagramsListDAO.saveAnagramsList(userAlphabetized, userAnagrams);
-				return "resultsNewEntry";
+			anagramsListDAO.saveAnagramsList(userAlphabetized, userAnagrams);
+			return "resultsNewEntry";
 			}
-		}
 	}
-/*		} else {
-			boolean notInDatabaseConfirmation = anagramsListDAO.saveAnagramsList(userAlphabetized, userAnagrams);
-			if(notInDatabaseConfirmation)
-				return "resultsNewEntry";
-			else 
-				return "resultsError";
-		}*/
-	
-	
-		
+			
 /*	*//**
 	 * Supports validation on non-empty input in the search bar.
 	 * @param dataBinder SpringFramewrok WebDataBinder object
-	 *//*
+	 */
 	@InitBinder                                                                             
 	public void initBinder(WebDataBinder dataBinder) {
 	     StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);   
 	     dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);                
-	}  */   
+	}     
 	
 	/**
 	 * Splits input (string of anagrams) into separate words, alphabetizes first array element 

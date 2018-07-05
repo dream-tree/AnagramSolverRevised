@@ -15,7 +15,7 @@ import javax.persistence.Table;
 /**
  * Class mapping simple POJO to the table in the relational database.
  * Each instance of the class holds a keyword called {@link #alphabetizedWord} 
- * relating to the list of strings being the list of anagrams {@link #anagrams}.
+ * relating to the list of strings or, in the other words - the list of anagrams {@link #anagrams}.
  * 
  * @author dream-tree
  * @version 3.00, June-July 2018
@@ -31,7 +31,7 @@ public class Alphabetized {
 	
 	/**
 	 * Points if a given alphabetized word is an original database entry 
-	 * or if given entry is added by user.
+	 * or if it is added by the user.
 	 * No original database entry (alphabetized word) can be deleted.
 	 */
 	@Column(name="alphabetized_marker")
@@ -39,7 +39,7 @@ public class Alphabetized {
 	
 	/**
 	 * An alphabetized word (key).
-	 * Alphabetized means that all chars of a given word were lexicographically sorted.
+	 * Alphabetized means that all chars of a given word are lexicographically sorted.
 	 * New string created in that way is called an alphabetized word.
 	 * <ul>
 	 * <li>0 means an original database entry</li>
