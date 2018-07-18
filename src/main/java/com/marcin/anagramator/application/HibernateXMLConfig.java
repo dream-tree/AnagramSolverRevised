@@ -8,5 +8,4 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @ImportResource("classpath:hibernate2.cfg.xml")
 public class HibernateXMLConfig {
-
 }

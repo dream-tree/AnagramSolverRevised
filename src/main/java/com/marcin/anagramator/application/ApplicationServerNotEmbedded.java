@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * Starting point of the application.
@@ -17,6 +18,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  * (for building a war file and deploying it). 
  */
 @SpringBootApplication(exclude=HibernateJpaAutoConfiguration.class)
+@ComponentScan(basePackages="com.marcin.anagramator.*")
 public class ApplicationServerNotEmbedded extends SpringBootServletInitializer {
 
 	@Override

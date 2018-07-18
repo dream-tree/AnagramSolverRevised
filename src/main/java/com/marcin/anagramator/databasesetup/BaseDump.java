@@ -26,10 +26,9 @@ public class BaseDump {
 				.configure("hibernate.cfg.xml")
 				.addAnnotatedClass(Alphabetized.class)
 				.addAnnotatedClass(Anagram.class)
-				.buildSessionFactory();
-		
+				.buildSessionFactory();	
 		Session session;
-		
+
 		try {
 			for(String s : map.keySet()) {
 				session = factory.getCurrentSession();

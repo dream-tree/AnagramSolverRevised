@@ -108,9 +108,9 @@ public class Alphabetized {
 		this.anagrams = anagrams;
 	}
 
-/*	@Override
+	@Override
 	public String toString() {
-		return "Alphabetized [id=" + id + ", alphabetizedMarker=" + alphabetizedMarker + ", alphabetizedWord="
-				+ alphabetizedWord + ", anagrams=" + anagrams + "]";
-	}*/
+		return "Alphabetized [id=" + id + ", alphabetizedMarker=" + alphabetizedMarker + 
+				", alphabetizedWord=" + alphabetizedWord + "]";
+	}
 }	

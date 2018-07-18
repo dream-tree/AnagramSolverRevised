@@ -43,8 +43,8 @@ public class AnagramsListDAOImpl implements AnagramsListDAO {
 								"FROM Alphabetized alpha " +
 								"JOIN FETCH alpha.anagrams " + 
 								"WHERE alpha.alphabetizedWord=:theWord", Alphabetized.class)	
-							.setParameter("theWord", alphabetizedQuery)
-							.getSingleResult();
+					.setParameter("theWord", alphabetizedQuery)
+					.getSingleResult();
 			tempList = tempAlphabetized.getAnagrams();	
 		} catch (Exception ex) {
 			LOGGER.info("Hibernate database query error.", ex.toString(), ex);

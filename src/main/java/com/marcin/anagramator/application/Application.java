@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @version 3.00, June-July 2018
  */
 @SpringBootApplication(exclude=HibernateJpaAutoConfiguration.class)
-@ComponentScan(basePackages= {"com.marcin.anagramator.*"})
+@ComponentScan(basePackages="com.marcin.anagramator.*")
 public class Application {
 
 	public static void main(String[] args) {

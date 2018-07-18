@@ -45,8 +45,8 @@ public class UserEntryController {
 	}
 
 	/**
-	 * Adds the model for holding user query data and corresponding result data (anagrams).
-	 * @param words model holding user query and corresponding result data
+	 * Adds the model for holding user query and all corresponding anagrams.
+	 * @param words model holding user query and all corresponding anagrams
 	 */
 	@RequestMapping("/processWordForm")
 	public String processWordForm(Model entry) {  
@@ -56,7 +56,7 @@ public class UserEntryController {
 
 	/**
 	 * Gets user input (string of anagrams), processes it for an appropriate validation
-	 * and calls DAO method for saving new entries in the database (if validation passed)
+	 * and calls DAO method for saving new entries in the database (after the successful validation)
 	 * or returns an error page (if validation failed).
 	 * @param userEntry object holding user data typed into a text field
 	 * @param thebindingResult the holder for data binder // TODO

@@ -51,12 +51,12 @@ public class UserQueryResultController {
 	/**
 	 * Validates user input (query for anagrams), processes it and sets result data (anagrams).
 	 * @param queryResult object holding user query data and corresponding result data (anagrams)
-	 * @param thebindingResult the holder for data binder 
+	 * @param theBindingResult the holder for data binder 
 	 */
 	@RequestMapping("/processForm")
 	public String processForm(@Valid @ModelAttribute("theQueryResult") UserQueryResult queryResult, 
-			BindingResult thebindingResult) {
-		if (thebindingResult.hasErrors())
+			BindingResult theBindingResult) {
+		if (theBindingResult.hasErrors())
 			return "inputForm";
 		String query = queryResult.getQuery();
 		String alphabetized = alphabetize(query);   

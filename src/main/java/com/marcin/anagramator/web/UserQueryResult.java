@@ -6,8 +6,8 @@ import javax.validation.constraints.Pattern;
 import org.springframework.stereotype.Component;
 
 /**
- * Class serves as a model for holding user input (query from a web form) 
- * and the corresponding result data (anagrams) fetched from the database.
+ * Class serves as a data holder for user input (query from a web form) 
+ * and the corresponding anagrams fetched from the database.
  * 
  * @author dream-tree
  * @version 3.00, June-July 2018
