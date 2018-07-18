@@ -10,4 +10,4 @@
  * @author dream-tree
  * @version 3.00, June-July 2018
  */
-package com.marcin.AnagramSolver.DatabaseSetup;
+package com.marcin.anagramator.databasesetup;

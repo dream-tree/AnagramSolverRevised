@@ -1,4 +1,4 @@
-package com.marcin.AnagramSolver.Application;
+package com.marcin.anagramator.web;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +14,9 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.marcin.anagramator.domain.Anagram;
+import com.marcin.anagramator.repository.AnagramsListDAO;
 
 /**
  * Controllers for the application.
@@ -23,14 +25,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @version 3.00, June-July 2018
  */
 @Controller
-public class UserQueryController {
+public class UserQueryResultController {
 	
-	private QueryResult queryResult;
+	private UserQueryResult queryResult;
 	private AnagramsListDAO anagramsListDAO;
 	private UserEntry userEntry;
 	
 	@Autowired
-	public UserQueryController(QueryResult queryResult, AnagramsListDAO anagramsListDAO, UserEntry userEntry) {
+	public UserQueryResultController(UserQueryResult queryResult, AnagramsListDAO anagramsListDAO, UserEntry userEntry) {
 		this.queryResult = queryResult;
 		this.anagramsListDAO = anagramsListDAO;
 		this.userEntry = userEntry;
@@ -52,7 +54,7 @@ public class UserQueryController {
 	 * @param thebindingResult the holder for data binder 
 	 */
 	@RequestMapping("/processForm")
-	public String processForm(@Valid @ModelAttribute("theQueryResult") QueryResult queryResult, 
+	public String processForm(@Valid @ModelAttribute("theQueryResult") UserQueryResult queryResult, 
 			BindingResult thebindingResult) {
 		if (thebindingResult.hasErrors())
 			return "inputForm";
@@ -67,7 +69,7 @@ public class UserQueryController {
 				.map(anagram -> anagram.getAnagramWord())
 				.toArray(String[]::new);
 		queryResult.setResultSet(temp);
-			return "results";		
+		return "results";		
 	}
 		
 	/**

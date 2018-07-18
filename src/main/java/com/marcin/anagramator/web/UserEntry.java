@@ -1,4 +1,4 @@
-package com.marcin.AnagramSolver.Application;
+package com.marcin.anagramator.web;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -25,20 +25,8 @@ public class UserEntry {
 				message="Only letters allowed. Only three or more letters words allowed.")
 	private String optionalAnagramsString;
 	
-/*	*//**
-	 * Serves as an input data holder for all anagrams typed by user
-	 * to be displayed on the "result2.jsp" web page.
-	 *//*
-	private String[] optionalAnagrams;*/
-	
 	public UserEntry() {
 	}
-
-	
-/*	public UserEntry(String[] optionalAnagrams, String optionalAnagramsString) {
-		this.optionalAnagrams = optionalAnagrams;
-		this.optionalAnagramsString = optionalAnagramsString;
-	}*/
 
 	public String getOptionalAnagramsString() {
 		return optionalAnagramsString;
@@ -48,19 +36,8 @@ public class UserEntry {
 		this.optionalAnagramsString = optionalAnagramsString;
 	}
 
-/*	public String[] getOptionalAnagrams() {
-		return optionalAnagrams;
-	}
-
-
-	public void setOptionalAnagrams(String[] optionalAnagrams) {
-		this.optionalAnagrams = optionalAnagrams;
-	}*/
-
-
 	@Override
 	public String toString() {
-		return "UserEntry [optionalAnagramsString=" + optionalAnagramsString/*
-				+ ", optionalAnagrams=" + Arrays.toString(optionalAnagrams) */+ "]";
+		return "UserEntry [optionalAnagramsString=" + optionalAnagramsString + "]";
 	}
 }

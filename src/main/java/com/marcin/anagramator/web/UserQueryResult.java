@@ -1,6 +1,4 @@
-package com.marcin.AnagramSolver.Application;
-
-import java.util.Arrays;
+package com.marcin.anagramator.web;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -15,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @version 3.00, June-July 2018
  */
 @Component
-public class QueryResult {
+public class UserQueryResult {
 
 	/**
 	 * User input data holder.
@@ -30,7 +28,7 @@ public class QueryResult {
 	 */
 	private String[] resultSet;
 	
-	public QueryResult() {
+	public UserQueryResult() {
 	}
 
 	public String getQuery() {
@@ -51,6 +49,6 @@ public class QueryResult {
 
 	@Override
 	public String toString() {
-		return Arrays.toString(resultSet);
+		return "[Query: " + query + "]";
 	}	
 }

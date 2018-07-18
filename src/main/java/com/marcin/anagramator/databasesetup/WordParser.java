@@ -1,4 +1,4 @@
-package com.marcin.AnagramSolver.DatabaseSetup;
+package com.marcin.anagramator.databasesetup;
 
 import java.io.File;
 import java.io.FileReader;
@@ -8,12 +8,9 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-
-import com.opencsv.CSVReader;
 
 import ch.qos.logback.classic.Logger;
 /**
@@ -31,27 +28,6 @@ public class WordParser {
 	private static Logger logger;
 
 	public WordParser() {
-	}
-	
-	/*
-	 * (non-Javadoc) 
-	 * Used only for exercising purposes; 
-	 * method result: 173.530 list elements 
-	 */
-	public static List<String> readWords1() {                    
-		List<String> list = new ArrayList<>();
-		CSVReader reader = null;
-		try {
-			reader = new CSVReader(new FileReader(PATH.toString()));
-			String[] line;
-			while ((line = reader.readNext()) != null) {
-				list.add(line[0]);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		System.out.println(list.size());
-		return list;
 	}
 	
 	/*

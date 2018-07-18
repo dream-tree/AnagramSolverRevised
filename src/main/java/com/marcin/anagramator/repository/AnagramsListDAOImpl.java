@@ -1,17 +1,17 @@
-package com.marcin.AnagramSolver.Application;
+package com.marcin.anagramator.repository;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-
+import com.marcin.anagramator.domain.Alphabetized;
+import com.marcin.anagramator.domain.Anagram;
 
 /**
  * DAO class implementing the {@link AnagramsListDAO} interface
@@ -24,30 +24,32 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AnagramsListDAOImpl implements AnagramsListDAO {
 	
+	@Autowired
+	private SessionFactory sessionFactory;
 	private static final Logger LOGGER = LoggerFactory.getLogger(AnagramsListDAO.class);
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<Anagram> getAnagramsList(String alphabetizedQuery) {		
-		SessionFactory sessionFactory = HibernateUtility2.getInstance();			
+	@Transactional
+	public List<Anagram> getAnagramsList(String alphabetizedQuery) {	
 		Session session = sessionFactory.getCurrentSession();
 		List<Anagram> tempList = null;
 		try {
-			session.beginTransaction();	
-			Query<Alphabetized> query = session.createQuery("select alpha from Alphabetized alpha "
-									+ "JOIN FETCH alpha.anagrams "
-									+ "where alpha.alphabetizedWord=:theWord", Alphabetized.class);	
-			query.setParameter("theWord", alphabetizedQuery);
-			Alphabetized tempAlphabetized = query.getSingleResult();
-			tempList = tempAlphabetized.getAnagrams();
-			session.getTransaction().commit();			
+			Alphabetized tempAlphabetized = 
+					session.createQuery(
+								"SELECT alpha " +
+								"FROM Alphabetized alpha " +
+								"JOIN FETCH alpha.anagrams " + 
+								"WHERE alpha.alphabetizedWord=:theWord", Alphabetized.class)	
+							.setParameter("theWord", alphabetizedQuery)
+							.getSingleResult();
+			tempList = tempAlphabetized.getAnagrams();	
 		} catch (Exception ex) {
 			LOGGER.info("Hibernate database query error.", ex.toString(), ex);
-		} finally {
-			session.close();
-		}	
+			System.err.println(ex.toString());
+		}
 		return tempList;
 	}
 
@@ -55,29 +57,22 @@ public class AnagramsListDAOImpl implements AnagramsListDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
+	@Transactional
 	public void saveAnagramsList(String userAlphabetizedString, List<String> userListOfStrings) {
-		SessionFactory sessionFactory = HibernateUtility2.getInstance();			
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			session.beginTransaction();	
 			Alphabetized userAlphabetizedObject = new Alphabetized(1, userAlphabetizedString);
-			List<Anagram> listOfAngrams = createListOfAngrams(userAlphabetizedObject, userListOfStrings);
-			session.save(userAlphabetizedObject); 
-			session.getTransaction().commit();		
+			createListOfAngrams(userAlphabetizedObject, userListOfStrings);
+			session.save(userAlphabetizedObject); 	
 		} catch (Exception ex) {
 			LOGGER.info("Hibernate database save error.", ex.toString(), ex);
-		} finally {
-			session.close();	
 		}
 	}
 	
-	public List<Anagram> createListOfAngrams(Alphabetized userAlphabetizedObject, List<String> userListOfStrings) {
-		List<Anagram> listOfAngrams = new ArrayList<>();
+	public void createListOfAngrams(Alphabetized userAlphabetizedObject, List<String> userListOfStrings) {
 		for(String singleString : userListOfStrings) {
 			Anagram userSingleAnagram = new Anagram(1, singleString);
-			listOfAngrams.add(userSingleAnagram);
 			userAlphabetizedObject.add(userSingleAnagram);
 		}
-		return listOfAngrams;
 	}
 }

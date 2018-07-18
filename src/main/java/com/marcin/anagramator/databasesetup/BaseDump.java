@@ -1,4 +1,4 @@
-package com.marcin.AnagramSolver.DatabaseSetup;
+package com.marcin.anagramator.databasesetup;
 
 import java.util.List;
 import java.util.Map;
@@ -7,8 +7,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.marcin.AnagramSolver.Application.Alphabetized;
-import com.marcin.AnagramSolver.Application.Anagram;
+import com.marcin.anagramator.domain.Alphabetized;
+import com.marcin.anagramator.domain.Anagram;
 
 /**
  * Class saves all entries to the database.

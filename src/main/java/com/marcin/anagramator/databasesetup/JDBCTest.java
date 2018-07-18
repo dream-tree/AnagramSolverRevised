@@ -1,4 +1,4 @@
-package com.marcin.AnagramSolver.DatabaseSetup;
+package com.marcin.anagramator.databasesetup;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

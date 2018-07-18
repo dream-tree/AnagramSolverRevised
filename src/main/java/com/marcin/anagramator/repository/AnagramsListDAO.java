@@ -1,7 +1,8 @@
-package com.marcin.AnagramSolver.Application;
+package com.marcin.anagramator.repository;
 
 import java.util.List;
-import java.util.Map;
+
+import com.marcin.anagramator.domain.Anagram;
 
 /**
  * Base interface for CRUD operations and common queries.

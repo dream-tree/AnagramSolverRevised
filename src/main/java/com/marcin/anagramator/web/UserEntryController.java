@@ -1,4 +1,4 @@
-package com.marcin.AnagramSolver.Application;
+package com.marcin.anagramator.web;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.marcin.anagramator.repository.AnagramsListDAO;
+
 /**
  * Controllers for the application.
  * 
@@ -31,11 +33,11 @@ public class UserEntryController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserEntryController.class);
 	
 	private UserEntry userEntry;
-	private QueryResult queryResult;
+	private UserQueryResult queryResult;
 	private AnagramsListDAO anagramsListDAO;
 	
 	@Autowired
-	public UserEntryController(UserEntry userEntry, QueryResult queryResult,
+	public UserEntryController(UserEntry userEntry, UserQueryResult queryResult,
 			AnagramsListDAO anagramsListDAO) {
 		this.userEntry = userEntry;
 		this.queryResult = queryResult;
@@ -53,7 +55,7 @@ public class UserEntryController {
 	}
 
 	/**
-	 * Gets user input (string of anagrams), processes it for appropriate validation
+	 * Gets user input (string of anagrams), processes it for an appropriate validation
 	 * and calls DAO method for saving new entries in the database (if validation passed)
 	 * or returns an error page (if validation failed).
 	 * @param userEntry object holding user data typed into a text field
@@ -63,12 +65,10 @@ public class UserEntryController {
 	public String processForm(@Valid @ModelAttribute("userNewEntry") UserEntry userEntry, 
 			BindingResult bindingResult) {	
 		if(bindingResult.hasErrors()) {
-			System.err.println("BINDING RESULTS ERROR!!!");
 			return "addForm";
 		}
 		String userAnagramsString = userEntry.getOptionalAnagramsString();
 		Map<String, List<String>> splitted = splitAndValidateEntry(userAnagramsString);		
-		splitted.forEach((x, y) -> System.out.println(x + " " + y));		
 		String userAlphabetized = "";
 		List<String> userAnagrams = null;
 		for (String s : splitted.keySet()) {
@@ -76,9 +76,9 @@ public class UserEntryController {
 			userAnagrams = splitted.get(s);
 		}
 		if(userAlphabetized.equals("error") 
-				// final confirmation: entry does not exist in the database 
+				// final confirmation whether entry does not exist in the database 
 				// (user might have changed sth browsing the pages to and forth)
-				|| anagramsListDAO.getAnagramsList(userAlphabetized) != null ){
+				|| anagramsListDAO.getAnagramsList(userAlphabetized) != null) {
 			return "resultsError";
 		} else {
 			anagramsListDAO.saveAnagramsList(userAlphabetized, userAnagrams);
@@ -86,7 +86,7 @@ public class UserEntryController {
 			}
 	}
 			
-/*	*//**
+	/**
 	 * Supports validation on non-empty input in the search bar.
 	 * @param dataBinder SpringFramewrok WebDataBinder object
 	 */

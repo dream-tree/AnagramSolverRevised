@@ -1,4 +1,4 @@
-package com.marcin.AnagramSolver.Application;
+package com.marcin.anagramator.domain;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -91,9 +91,9 @@ public class Anagram {
 		this.alphabetized = alphabetized;
 	}
 
-	@Override
+/*	@Override
 	public String toString() {
 		return "Anagram [id=" + id + ", anagramMarker=" + anagramMarker + ", anagramWord=" + anagramWord
 				+ ", alphabetized=" + alphabetized + "]";
-	}
+	}*/
 }	

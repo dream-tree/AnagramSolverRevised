@@ -1,7 +1,7 @@
-package com.marcin.AnagramSolver.Application;
+package com.marcin.anagramator.web;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * Controller class for the top-level web requests mapping.
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MainController {
 	
-	@RequestMapping("/") 
+	@GetMapping("/") 
 	public String showMainMenu() {
 		return "mainMenu";
 	}

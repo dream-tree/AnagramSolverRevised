@@ -1,4 +1,4 @@
-package com.marcin.AnagramSolver.Application;
+package com.marcin.anagramator.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +65,7 @@ public class Alphabetized {
 
 	/**
 	 * Adds all matching anagrams to the list. 
-	 * If no list exists, it creates one.
+	 * If no list exists, it creates a new one.
 	 * @param tempAnagram anagram word to be added to the list of anagrams
 	 */
 	public void add(Anagram tempAnagram) {                 
@@ -108,9 +108,9 @@ public class Alphabetized {
 		this.anagrams = anagrams;
 	}
 
-	@Override
+/*	@Override
 	public String toString() {
 		return "Alphabetized [id=" + id + ", alphabetizedMarker=" + alphabetizedMarker + ", alphabetizedWord="
 				+ alphabetizedWord + ", anagrams=" + anagrams + "]";
-	}
+	}*/
 }	
