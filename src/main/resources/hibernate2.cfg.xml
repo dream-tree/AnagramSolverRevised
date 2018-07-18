@@ -15,22 +15,20 @@
 		http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!-- 1: Defining Database DataSource / connection pool -->
-	<bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-          destroy-method="close">
-        <property name="driverClass" value="com.mysql.cj.jdbc.Driver" />
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/anagramator3?useSSL=false" />
-        <property name="user" value="accessor" />
-        <property name="password" value="accessor" /> 
+	<bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="com.mysql.cj.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/anagramator3?useSSL=false" />
+		<property name="user" value="accessor" />
+		<property name="password" value="accessor" /> 
 
         <!-- connection pool properties for C3P0 -->
-        <property name="minPoolSize" value="5" />
-        <property name="maxPoolSize" value="20" />
-        <property name="maxIdleTime" value="30000" />
+		<property name="minPoolSize" value="5" />
+		<property name="maxPoolSize" value="20" />
+		<property name="maxIdleTime" value="30000" />
 	</bean>  
 	
     <!-- 2: Hibernate session factory setup -->
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="myDataSource" />
 		<property name="packagesToScan" value="com.marcin.anagramator.*" />
 		<property name="hibernateProperties">
@@ -39,14 +37,14 @@
 		      <prop key="hibernate.show_sql">true</prop>
 		   </props>
 		</property>
-   </bean>	  
+	</bean>	  
 
     <!-- 3: Hibernate transaction manager setup-->
 	<bean id="myTransactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
     
     <!-- 4: Enabling configuration of transactional behavior based on annotations -->
-	 <tx:annotation-driven transaction-manager="myTransactionManager" />
+	<tx:annotation-driven transaction-manager="myTransactionManager" />
 	
 </beans>
