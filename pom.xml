@@ -7,10 +7,10 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.3.RELEASE</version>
 	</parent>
-	<artifactId>spring-boot-sample-web-jsp</artifactId>
-	<packaging>war</packaging>
-	<name>Spring Boot Web JSP Sample</name>
-	<description>Spring Boot Web JSP Sample</description>
+	<artifactId>anagram-solver-spring-boot</artifactId>
+	<!-- <packaging>war</packaging> -->
+	<name>Anagram Solver</name>
+	<description>Anagram Solver with Spring Boot</description>
 	<properties>
 		<main.basedir>${basedir}/../..</main.basedir>
 		<m2eclipse.wtp.contextRoot>/</m2eclipse.wtp.contextRoot>
@@ -55,7 +55,7 @@
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 		
-		<!-- All 4 below for use of Hibernate with Java 9  -->
+		<!-- All 4 below for Java 9  -->
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
