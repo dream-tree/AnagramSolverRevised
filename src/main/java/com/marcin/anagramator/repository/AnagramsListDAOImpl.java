@@ -2,11 +2,11 @@ package com.marcin.anagramator.repository;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,8 +24,8 @@ import com.marcin.anagramator.domain.Anagram;
 @Repository
 public class AnagramsListDAOImpl implements AnagramsListDAO {
 	
-	@Autowired
-	private SessionFactory sessionFactory;
+	@PersistenceContext
+	private EntityManager entityManager;
 	private static final Logger LOGGER = LoggerFactory.getLogger(AnagramsListDAO.class);
 	
 	/**
@@ -34,11 +34,10 @@ public class AnagramsListDAOImpl implements AnagramsListDAO {
 	@Override
 	@Transactional
 	public List<Anagram> getAnagramsList(String alphabetizedQuery) {	
-		Session session = sessionFactory.getCurrentSession();
 		List<Anagram> tempList = null;
 		try {
 			Alphabetized tempAlphabetized = 
-					session.createQuery(
+					entityManager.createQuery(
 								"SELECT alpha " +
 								"FROM Alphabetized alpha " +
 								"JOIN FETCH alpha.anagrams " + 
@@ -59,11 +58,10 @@ public class AnagramsListDAOImpl implements AnagramsListDAO {
 	@Override
 	@Transactional
 	public void saveAnagramsList(String userAlphabetizedString, List<String> userListOfStrings) {
-		Session session = sessionFactory.getCurrentSession();
 		try {
 			Alphabetized userAlphabetizedObject = new Alphabetized(1, userAlphabetizedString);
 			createListOfAngrams(userAlphabetizedObject, userListOfStrings);
-			session.save(userAlphabetizedObject); 	
+			entityManager.persist(userAlphabetizedObject); 	
 		} catch (Exception ex) {
 			LOGGER.info("Hibernate database save error.", ex.toString(), ex);
 		}
