@@ -1,10 +1,10 @@
 # AnagramSolverExtended
 
-EDIT:<br>
-AnagramSolverExtended project based on the AnagramSolver project.<br>
-Project was migrated to SpringBoot.<br>
-Planned revisions: remodelling entities (done), allowing addition new entries to the database (partly done), allowing removal/update user entries (TODO).<br>
-Project is up and running, though it is still an early stage of it taking into account the features that I'm going to implement.<br>
+EDIT:</br>
+AnagramSolverExtended project based on the AnagramSolver project.</br>
+Project was migrated to SpringBoot.</br>
+Planned revisions: remodelling entities (done), allowing addition new entries to the database (partly done), allowing removal/update user entries (TODO).</br>
+Project is up and running, though it is still an early stage of it taking into account the features that I'm going to implement.</br>
 ---
 
 Web based app serving as an english anagrams solver. It takes text input and finds out all possible word combinations (anagrams) using english dictionary.
