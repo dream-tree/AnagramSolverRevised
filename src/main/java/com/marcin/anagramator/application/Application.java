@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @author dream-tree
  * @version 3.00, June-July 2018
  */
-@SpringBootApplication/*(exclude=HibernateJpaAutoConfiguration.class)*/
+@SpringBootApplication
 @ComponentScan(basePackages="com.marcin.anagramator.*")
 @EntityScan(basePackages="com.marcin.anagramator.domain")
 public class Application {

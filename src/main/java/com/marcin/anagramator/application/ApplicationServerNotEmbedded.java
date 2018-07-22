@@ -2,6 +2,7 @@ package com.marcin.anagramator.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -17,8 +18,9 @@ import org.springframework.context.annotation.ComponentScan;
 /* Version to run without embedded Tomcat web server 
  * (for building a war file and deploying it). 
  */
-@SpringBootApplication(exclude=HibernateJpaAutoConfiguration.class)
+@SpringBootApplication
 @ComponentScan(basePackages="com.marcin.anagramator.*")
+@EntityScan(basePackages="com.marcin.anagramator.domain")
 public class ApplicationServerNotEmbedded extends SpringBootServletInitializer {
 
 	@Override
