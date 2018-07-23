@@ -24,7 +24,7 @@ public class SimpleControllersTest {
     private UserQueryResultController userQueryResultController;
 
 	@Test
-	public void contextLoads() throws Exception {
+	public void testCreatingControllers() throws Exception {
 		assertThat(mainControler).isNotNull();		
 		assertThat(userQueryResultController).isNotNull();
 		assertThat(userEntryController).isNotNull();
