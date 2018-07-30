@@ -18,7 +18,7 @@ import com.marcin.anagramator.business.domain.UserQuery;
 public interface AnagramQueryService {
 
 	/**
-	 * Parses user input to make available to fetch corresponding anagrams in the database.
+	 * Parses user input to make available fetching corresponding anagrams from the database.
 	 * @param userQuery
 	 *			user query typed in the web page form to find appropriate anagrams 
 	 * @return list of unique words fetched from the database; 	
