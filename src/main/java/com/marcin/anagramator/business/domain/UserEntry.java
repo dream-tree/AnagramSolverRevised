@@ -1,4 +1,4 @@
-package com.marcin.anagramator.web;
+package com.marcin.anagramator.business.domain;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -22,22 +22,22 @@ public class UserEntry {
 	 */
 	@NotNull
 	@Pattern(regexp="[a-zA-Z]{3,}(\\s+[a-zA-Z]{3,})*", 
-				message="Only letters allowed. Only three or more letters words allowed.")
-	private String optionalAnagramsString;
+				message="Only three or more letters words allowed separated by white space. Only letters allowed. ")
+	private String stringOfAnagrams;
 	
 	public UserEntry() {
 	}
 
-	public String getOptionalAnagramsString() {
-		return optionalAnagramsString;
+	public String getStringOfAnagrams() {
+		return stringOfAnagrams;
 	}
 
-	public void setOptionalAnagramsString(String optionalAnagramsString) {
-		this.optionalAnagramsString = optionalAnagramsString;
+	public void setStringOfAnagrams(String stringOfAnagrams) {
+		this.stringOfAnagrams = stringOfAnagrams;
 	}
 
 	@Override
 	public String toString() {
-		return "UserEntry [optionalAnagramsString=" + optionalAnagramsString + "]";
+		return "UserEntry [stringOfAnagrams=" + stringOfAnagrams + "]";
 	}
 }

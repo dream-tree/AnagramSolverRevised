@@ -11,6 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.springframework.stereotype.Component;
 
 /**
  * Class mapping simple POJO to the table in the relational database.
@@ -111,6 +115,6 @@ public class Alphabetized {
 	@Override
 	public String toString() {
 		return "Alphabetized [id=" + id + ", alphabetizedMarker=" + alphabetizedMarker + 
-				", alphabetizedWord=" + alphabetizedWord + "]";
+				", alphabetizedWord=" + alphabetizedWord + ", anagrams list: " + anagrams + "]";
 	}
 }	

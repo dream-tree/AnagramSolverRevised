@@ -14,8 +14,8 @@ import javax.persistence.Table;
  * Class mapping simple POJO to the table in the relational database.
  * An anagram is a word formed by rearranging the letters of a different word, 
  * using all the original letters exactly once. 
- * Each object o this class holds a marker {@link #anagramMarker}
- * pointing if it is an original database entry or is added by user.
+ * Each object of this class holds a marker {@link #anagramMarker}
+ * pointing if it is an original database entry or the entry is added by user.
  * 
  * @author dream-tree
  * @version 3.00, June-July 2018
@@ -93,6 +93,6 @@ public class Anagram {
 
 	@Override
 	public String toString() {
-		return "Anagram [id=" + id + ", anagramMarker=" + anagramMarker + ", anagramWord=" + anagramWord + "]";
+		return "sth " + anagramWord;
 	}
 }	

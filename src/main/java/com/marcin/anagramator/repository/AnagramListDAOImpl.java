@@ -1,6 +1,6 @@
 package com.marcin.anagramator.repository;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,7 +14,7 @@ import com.marcin.anagramator.domain.Alphabetized;
 import com.marcin.anagramator.domain.Anagram;
 
 /**
- * DAO class implementing the {@link AnagramsListDAO} interface
+ * DAO class implementing the {@link AnagramListDAO} interface
  * for CRUD operations and the common queries.
  * This implementation uses the Hibernate ORM framework.
  * 
@@ -22,21 +22,21 @@ import com.marcin.anagramator.domain.Anagram;
  * @version 3.00, June-July 2018
  */
 @Repository
-public class AnagramsListDAOImpl implements AnagramsListDAO {
+public class AnagramListDAOImpl implements AnagramListDAO {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
-	private static final Logger LOGGER = LoggerFactory.getLogger(AnagramsListDAO.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(AnagramListDAO.class);
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	@Transactional
-	public List<Anagram> getAnagramsList(String alphabetizedQuery) {	
-		List<Anagram> tempList = null;
+	public Alphabetized getAlphabetized(String alphabetizedQuery) {	
+		Alphabetized tempAlphabetized = new Alphabetized();
 		try {
-			Alphabetized tempAlphabetized = 
+			tempAlphabetized = 
 					entityManager.createQuery(
 								"SELECT alpha " +
 								"FROM Alphabetized alpha " +
@@ -44,12 +44,10 @@ public class AnagramsListDAOImpl implements AnagramsListDAO {
 								"WHERE alpha.alphabetizedWord=:theWord", Alphabetized.class)	
 					.setParameter("theWord", alphabetizedQuery)
 					.getSingleResult();
-			tempList = tempAlphabetized.getAnagrams();	
 		} catch (Exception ex) {
 			LOGGER.info("Hibernate database query error.", ex.toString(), ex);
-			System.err.println(ex.toString());
 		}
-		return tempList;
+		return tempAlphabetized;
 	}
 
 	/**
@@ -57,7 +55,7 @@ public class AnagramsListDAOImpl implements AnagramsListDAO {
 	 */
 	@Override
 	@Transactional
-	public void saveAnagramsList(String userAlphabetizedString, List<String> userListOfStrings) {
+	public void saveAnagramsList(String userAlphabetizedString, Set<String> userListOfStrings) {
 		try {
 			Alphabetized userAlphabetizedObject = new Alphabetized(1, userAlphabetizedString);
 			createListOfAngrams(userAlphabetizedObject, userListOfStrings);
@@ -67,7 +65,7 @@ public class AnagramsListDAOImpl implements AnagramsListDAO {
 		}
 	}
 	
-	public void createListOfAngrams(Alphabetized userAlphabetizedObject, List<String> userListOfStrings) {
+	public void createListOfAngrams(Alphabetized userAlphabetizedObject, Set<String> userListOfStrings) {
 		for(String singleString : userListOfStrings) {
 			Anagram userSingleAnagram = new Anagram(1, singleString);
 			userAlphabetizedObject.add(userSingleAnagram);
