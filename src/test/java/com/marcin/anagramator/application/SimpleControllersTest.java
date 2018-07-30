@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.marcin.anagramator.web.MainController;
 import com.marcin.anagramator.web.UserEntryController;
-import com.marcin.anagramator.web.UserQueryResultController;
+import com.marcin.anagramator.web.UserQueryController;
 
 @RunWith(SpringRunner.class)              
 @SpringBootTest
@@ -21,7 +21,7 @@ public class SimpleControllersTest {
     @Autowired
     private UserEntryController userEntryController;
     @Autowired
-    private UserQueryResultController userQueryResultController;
+    private UserQueryController userQueryResultController;
 
 	@Test
 	public void testCreatingControllers() throws Exception {
