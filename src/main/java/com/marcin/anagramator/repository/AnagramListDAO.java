@@ -2,8 +2,6 @@ package com.marcin.anagramator.repository;
 
 import java.util.Set;
 
-import org.springframework.stereotype.Repository;
-
 import com.marcin.anagramator.domain.Alphabetized;
 
 /**

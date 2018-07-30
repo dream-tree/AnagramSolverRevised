@@ -15,9 +15,14 @@ import com.marcin.anagramator.business.domain.UserQuery;
  * @author dream-tree
  * @version 3.00, June-July 2018
  */
-@Service
 public interface AnagramQueryService {
 
+	/**
+	 * Parses user input to make available to fetch corresponding anagrams in the database.
+	 * @param userQuery
+	 *			user query typed in the web page form to find appropriate anagrams 
+	 * @return list of unique words fetched from the database; 	
+	 */
 	public List<String> findAnagramsForUserQuery(UserQuery userQuery);
 	
 }

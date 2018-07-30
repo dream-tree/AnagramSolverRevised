@@ -12,8 +12,12 @@ import org.springframework.stereotype.Service;
 import com.marcin.anagramator.repository.AnagramListDAO;
 
 /**
- * Provides the service for creating and validating anagrams from user 
+ * Provides the implementation of service for creating and validating anagrams from user 
  * input to allow persisting them in the database. 
+ * If user input passes the validation, set of unique anagrams are going to be persisted in the database
+ * and returned to be exposed on the user result web page.
+ * If validation fails, returned set is empty, to point there was an error in user input. 
+ * In this case, database is not affected in any way. 
  * 
  * @author dream-tree
  * @version 3.00, June-July 2018

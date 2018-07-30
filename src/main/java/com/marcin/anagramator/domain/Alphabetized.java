@@ -11,14 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
-import org.springframework.stereotype.Component;
 
 /**
  * Class mapping simple POJO to the table in the relational database.
- * Each instance of the class holds a keyword called {@link #alphabetizedWord} 
+ * Each object of this class holds a keyword called {@link #alphabetizedWord} 
  * relating to the list of strings or, in the other words - the list of anagrams {@link #anagrams}.
  * 
  * @author dream-tree
