@@ -27,8 +27,9 @@
 	
 	<br>
 	<form:form action="processForm" modelAttribute="theQuery">		
-		Enter letters to find an anagram:	<form:input path="userSequeceOfLetters"/>
-											<form:errors path="userSequeceOfLetters" cssClass = "error1"/>
+		Enter letters to find an anagram:
+		<form:input path="userSequeceOfLetters"/>
+		<form:errors path="userSequeceOfLetters" cssClass = "error1"/>
 		<br>
 		<input type="submit" value="Submit"/>
 	</form:form>
