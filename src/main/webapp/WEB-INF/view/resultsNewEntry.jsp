@@ -11,20 +11,18 @@
 </head>
 <body>
 	<h1>
-		<strong>Temporary output page - PASSED.</strong>
+		<strong>Success!</strong>
 	</h1>
-	<br>
-		
-<%-- 	Found words:
+	You added the following words to the anagramator database:
 	<ul>
-		<c:forEach var="temp" items="${theQueryResult.resultSet}">
-			<li>${temp}</li>
+		<c:forEach var="anagram" items="${anagramsForDisplaying}">
+			<li>${anagram}</li>
 		</c:forEach>
 	</ul>
 		
 	<form:form action="showForm">
 		<input type="submit" value="Go back"/>
 	</form:form>
-	<br> --%>
+	<br>
 </body>
 </html>

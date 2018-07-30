@@ -16,15 +16,14 @@
 
 </head>
 <body>
-	
-	<p>Enter all anagrams of your sequence of letters</p> 
-	<p>If your sequence of letters form already a word, type this word in the input field too".</p>
-	<p>Separate words by space and click "Add" button.</p> 
-	<p>Attention: before adding anagrams to the database, your words will get an appropriate validation.</p>
+	<p>Enter below all anagrams of <strong>"${theQuery.alphabetizedWord}"</strong>.</p> 
+	<p>If <strong>"${theQuery.alphabetizedWord}"</strong> is a real word itself, type it too.</p> 
+	<p>Separate your words by a whitespace and click the "Add" button.</p> 
+	<p>Attention: before adding your anagrams to the database, all words will get an appropriate validation.</p>
 
-	<form:form action="validateNewEntry" modelAttribute="userNewEntry">		
-		<form:input path="optionalAnagramsString"/>
-		<form:errors path="optionalAnagramsString" cssClass = "error1"/>
+	<form:form action="validateNewEntry" modelAttribute="theUserEntry">		
+		<form:input path="stringOfAnagrams"/>
+		<form:errors path="stringOfAnagrams" cssClass = "error1"/>
 		<br><br>
 		<input type="submit" value="Submit" width="300"/>
 	</form:form>

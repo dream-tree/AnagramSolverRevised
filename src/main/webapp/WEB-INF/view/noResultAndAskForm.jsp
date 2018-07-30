@@ -11,7 +11,7 @@
 </head>
 <body>
 
-	Nothing was found for "${theQueryResult.query}".
+ 	Nothing was found for "${theQuery.userSequeceOfLetters}".
 
 	<p>If the sequence of letters you entered can form a "real" word and</p>
 	<p>and you want to add it to the database with all of its anagrams altogether (optionally),</p>	

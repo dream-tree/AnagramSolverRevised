@@ -15,11 +15,11 @@
 		<strong>Welcome to the output page.</strong>
 	</h1>
 	<br>
-		
-	Found words:
+
+	Found words for your query <strong>"${theQuery.userSequeceOfLetters}"</strong>:
 	<ul>
-		<c:forEach var="temp" items="${theQueryResult.resultSet}">
-			<li>${temp}</li>
+		<c:forEach var="anagram" items="${theListOfAnagrams}">
+			<li>${anagram}</li>
 		</c:forEach>
 	</ul>
 		

@@ -26,9 +26,9 @@
 	<p>Searching is case-insensitive.</p>
 	
 	<br>
-	<form:form action="processForm" modelAttribute="theQueryResult">		
-		Enter letters to find an anagram: 	<form:input path="query"/>
-									   		<form:errors path="query" cssClass = "error1"/>
+	<form:form action="processForm" modelAttribute="theQuery">		
+		Enter letters to find an anagram:	<form:input path="userSequeceOfLetters"/>
+											<form:errors path="userSequeceOfLetters" cssClass = "error1"/>
 		<br>
 		<input type="submit" value="Submit"/>
 	</form:form>
