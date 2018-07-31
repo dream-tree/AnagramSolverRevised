@@ -113,4 +113,36 @@ public class Alphabetized {
 		return "Alphabetized [id=" + id + ", alphabetizedMarker=" + alphabetizedMarker + 
 				", alphabetizedWord=" + alphabetizedWord + ", anagrams list: " + anagrams + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + alphabetizedMarker;
+		result = prime * result + ((alphabetizedWord == null) ? 0 : alphabetizedWord.hashCode());
+		result = prime * result + ((anagrams == null) ? 0 : anagrams.hashCode());
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Alphabetized other = (Alphabetized) obj;
+		if (alphabetizedMarker != other.alphabetizedMarker)
+			return false;
+		if (alphabetizedWord == null) {
+			if (other.alphabetizedWord != null)
+				return false;
+		} else if (!alphabetizedWord.equals(other.alphabetizedWord))
+			return false;
+		if (id != other.id)
+			return false;
+		return true;
+	}
 }	

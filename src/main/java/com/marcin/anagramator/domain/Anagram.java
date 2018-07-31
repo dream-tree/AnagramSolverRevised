@@ -93,6 +93,38 @@ public class Anagram {
 
 	@Override
 	public String toString() {
-		return "sth " + anagramWord;
+		return anagramWord;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((alphabetized == null) ? 0 : alphabetized.hashCode());
+		result = prime * result + anagramMarker;
+		result = prime * result + ((anagramWord == null) ? 0 : anagramWord.hashCode());
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Anagram other = (Anagram) obj;
+		if (anagramMarker != other.anagramMarker)
+			return false;
+		if (anagramWord == null) {
+			if (other.anagramWord != null)
+				return false;
+		} else if (!anagramWord.equals(other.anagramWord))
+			return false;
+		if (id != other.id)
+			return false;
+		return true;
+	}	
 }	
