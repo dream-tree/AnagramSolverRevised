@@ -18,7 +18,7 @@ public class UserQuery {
 	 * User input data holder.
 	 */
 	@NotNull
-	@Pattern(regexp = "[a-zA-Z]{3,}", message="Only letters allowed (3 or more).")
+	@Pattern(regexp="[a-zA-Z]{3,}", message="Only letters allowed (3 or more).")
 	private String userSequeceOfLetters;
 	
 	/**
