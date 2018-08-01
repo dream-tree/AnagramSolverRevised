@@ -65,7 +65,7 @@ public class AnagramEntryServiceImpl implements AnagramEntryService {
 	 * 			if any word does not match the alphabetized word, 
 	 * 			the multi-map key contains an "error" string for additional processing
 	 */
-	private Map<String, Set<String>> splitAndValidateEntry(String anagramsString) {
+	public Map<String, Set<String>> splitAndValidateEntry(String anagramsString) {
 		String[] splitted = anagramsString.split("\\s+");
 		String alphabetizedPattern = alphabetize(splitted[0]);
 		Set<String> matchingWords = new HashSet<String>();
