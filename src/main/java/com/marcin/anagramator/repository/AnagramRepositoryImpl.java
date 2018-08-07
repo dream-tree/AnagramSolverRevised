@@ -14,7 +14,7 @@ import com.marcin.anagramator.domain.Alphabetized;
 import com.marcin.anagramator.domain.Anagram;
 
 /**
- * DAO class implementing the {@link AnagramListDAO} interface
+ * DAO class implementing the {@link AnagramRepository} interface
  * for CRUD operations and the common queries.
  * This implementation uses the Hibernate ORM framework.
  * 
@@ -22,11 +22,11 @@ import com.marcin.anagramator.domain.Anagram;
  * @version 3.00, June-July 2018
  */
 @Repository
-public class AnagramListDAOImpl implements AnagramListDAO {
+public class AnagramRepositoryImpl implements AnagramRepository {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
-	private static final Logger LOGGER = LoggerFactory.getLogger(AnagramListDAO.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(AnagramRepository.class);
 	
 	/**
 	 * {@inheritDoc}
@@ -55,20 +55,13 @@ public class AnagramListDAOImpl implements AnagramListDAO {
 	 */
 	@Override
 	@Transactional
-	public void saveAnagramsList(String userAlphabetizedString, Set<String> userListOfStrings) {
+	public Alphabetized saveAnagramsList(Alphabetized userAlphabetizedObject) {
 		try {
-			Alphabetized userAlphabetizedObject = new Alphabetized(1, userAlphabetizedString);
-			createListOfAngrams(userAlphabetizedObject, userListOfStrings);
-			entityManager.persist(userAlphabetizedObject); 	
+			System.err.println("DAO jestem tutaj!!!!!!!!!");
+			entityManager.persist(userAlphabetizedObject); 				
 		} catch (Exception ex) {
 			LOGGER.info("Hibernate database save error.", ex.toString(), ex);
 		}
-	}
-	
-	public void createListOfAngrams(Alphabetized userAlphabetizedObject, Set<String> userListOfStrings) {
-		for(String singleString : userListOfStrings) {
-			Anagram userSingleAnagram = new Anagram(1, singleString);
-			userAlphabetizedObject.add(userSingleAnagram);
-		}
+		return userAlphabetizedObject;
 	}
 }

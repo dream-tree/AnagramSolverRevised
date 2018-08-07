@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.marcin.anagramator.business.domain.UserQuery;
 import com.marcin.anagramator.domain.Alphabetized;
 import com.marcin.anagramator.domain.Anagram;
-import com.marcin.anagramator.repository.AnagramListDAO;
+import com.marcin.anagramator.repository.AnagramRepository;
 
 /**
  * Provides the implementation of service for fetching anagrams from the database 
@@ -23,10 +23,10 @@ import com.marcin.anagramator.repository.AnagramListDAO;
 @Service
 public class AnagramQueryServiceImpl implements AnagramQueryService {
 
-	private AnagramListDAO anagramsListDAO;
+	private AnagramRepository anagramsListDAO;
 	
 	@Autowired
-	public AnagramQueryServiceImpl(AnagramListDAO anagramsListDAO) {
+	public AnagramQueryServiceImpl(AnagramRepository anagramsListDAO) {
 		this.anagramsListDAO = anagramsListDAO;
 	}
 	
@@ -54,7 +54,7 @@ public class AnagramQueryServiceImpl implements AnagramQueryService {
 	 * @param s "real" word to be alphabetized
 	 * @return an alphabetized word (a "non-real" word)
 	 */
-	private static String alphabetize(String s) {
+	public static String alphabetize(String s) {
 		char[] a = s.toLowerCase().toCharArray();
 		Arrays.sort(a);
 		return new String(a);

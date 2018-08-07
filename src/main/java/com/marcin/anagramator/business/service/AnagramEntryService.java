@@ -15,11 +15,12 @@ public interface AnagramEntryService {
 
 	/**
 	 * Parses user input to extract anagrams and validates all words against given anagram pattern.
+	 * If validation passes, anagrams are forwarded to repository for saving in the database.
 	 * @param userAnagramsString
 	 *			user's words (anagrams) typed in the web page form
 	 * @return set of unique words; every single returned word is an anagram to each
-	 *			other one in the returned set; set is to be exposed on the web page
+	 *			other in the returned set; set is to be exposed on the web page
 	 */
-	public Set<String> getAnagramsFromUserInput(String userAnagramsString);
+	public Set<String> extractAndSaveAnagrams(String userAnagramsString);
 	
 }

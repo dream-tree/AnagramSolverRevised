@@ -59,7 +59,7 @@ public class UserEntryController {
 			return "addForm";	
 		}
 		String userStringOfAnagrams = theUserEntry.getStringOfAnagrams();
-		Set<String> userAnagrams = anagramService.getAnagramsFromUserInput(userStringOfAnagrams);	
+		Set<String> userAnagrams = anagramService.extractAndSaveAnagrams(userStringOfAnagrams);	
 		if(userAnagrams.isEmpty()) {
 			return "resultsError";
 		}

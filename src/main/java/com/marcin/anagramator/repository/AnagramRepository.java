@@ -11,7 +11,7 @@ import com.marcin.anagramator.domain.Alphabetized;
  * @version 3.00, June-July 2018
  */
 
-public interface AnagramListDAO {
+public interface AnagramRepository {
 
 	/**
 	 * Gets all matching words from the database that are anagrams of the user query string.
@@ -26,6 +26,6 @@ public interface AnagramListDAO {
 	 * @param newEntryAlphabetized alphabetized word to be added to the database
 	 * @param newEntryAnagramsString list of strings (anagrams) to be added to the database
 	 */
-	public void saveAnagramsList(String newEntryAlphabetized, Set<String> newEntryAnagramsString);
+	public Alphabetized saveAnagramsList(Alphabetized userAlphabetizedObject);
 	
 }
