@@ -57,7 +57,6 @@ public class AnagramRepositoryImpl implements AnagramRepository {
 	@Transactional
 	public Alphabetized saveAnagramsList(Alphabetized userAlphabetizedObject) {
 		try {
-			System.err.println("DAO jestem tutaj!!!!!!!!!");
 			entityManager.persist(userAlphabetizedObject); 				
 		} catch (Exception ex) {
 			LOGGER.info("Hibernate database save error.", ex.toString(), ex);
