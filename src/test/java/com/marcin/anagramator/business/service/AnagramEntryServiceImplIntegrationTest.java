@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AnagramEntryServiceImplTest {
+public class AnagramEntryServiceImplIntegrationTest {
 
 	@Autowired
 	private AnagramEntryServiceImpl service;
@@ -36,9 +36,7 @@ public class AnagramEntryServiceImplTest {
 	@Test
 	public void shouldReturnResultOfElseConditionalInSplitAndValidateEntryMethod() {
 		Map<String, Set<String>> actual = service.splitAndValidateEntry("abcd dcba aaaa");
-		Set<String> testSet = new HashSet<>();
-		testSet.add("abcd");
-		testSet.add("dcba");
+		Set<String> testSet = new HashSet<String>() {{ add("abcd"); add("dcba"); }};
 		Map<String, Set<String>> expected = Map.of("error", testSet);
 		assertEquals(expected, actual);
 	}
@@ -46,13 +44,22 @@ public class AnagramEntryServiceImplTest {
 	@Test
 	public void shouldReturnFinalResultOfIfElseConditionalInSplitAndValidateEntryMethod() {
 		Map<String, Set<String>> actual = service.splitAndValidateEntry("abcd dcba cdba");
-		Set<String> testSet = new HashSet<>();
-		testSet.add("abcd");
-		testSet.add("dcba");
-		testSet.add("cdba");
+		Set<String> testSet = new HashSet<String>() {{ add("abcd"); add("dcba"); add("cdba"); }};
 		Map<String, Set<String>> expected = Map.of("abcd", testSet);
 		assertEquals(expected, actual);
 	}
 	
+	@Test
+	public void shouldReturnErrorInExtractAndSaveAnagramsMethodNotAnagramable() {
+		Set<String> actual = service.extractAndSaveAnagrams("abcd dcbx");
+		Set<String> expected = new HashSet<String>();
+		assertEquals(new HashSet<String>(), actual);
+	}
 	
+	@Test
+	public void shouldReturnErrorInExtractAndSaveAnagramsMethodAlredyInDatabase() {
+		Set<String> actual = service.extractAndSaveAnagrams("read dare");
+		Set<String> expected = new HashSet<String>();
+		assertEquals(expected, actual);
+	}
 }

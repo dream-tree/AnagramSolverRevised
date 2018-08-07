@@ -15,10 +15,10 @@ import com.marcin.anagramator.domain.Anagram;
 
 @RunWith(SpringRunner.class)              
 @SpringBootTest
-public class AnagramListDAOImplTest {
+public class AnagramRepositoryTest {
 	
 	@Autowired
-	private AnagramListDAOImpl anagramListDAOImpl;
+	private AnagramRepositoryImpl anagramListDAOImpl;
 	
 	@Test
 	public void shouldGetRightAnagrams1() {
@@ -35,7 +35,7 @@ public class AnagramListDAOImplTest {
 		alpha.setAlphabetizedMarker(0);
 		alpha.setAlphabetizedWord("aah");
 		alpha.setId(1);		
-		alpha.setAnagrams((new ArrayList<Anagram>() {{ add(anagram1); add(anagram2); }}));
+		alpha.setAnagrams(new ArrayList<Anagram>() {{ add(anagram1); add(anagram2); }});
 		
 		assertEquals(alpha, anagramListDAOImpl.getAlphabetized(alphabetizedQuery)); 
 	}
@@ -57,7 +57,7 @@ public class AnagramListDAOImplTest {
 		alpha.setAlphabetizedMarker(0);
 		alpha.setAlphabetizedWord("aelpp");
 		alpha.setId(7112);		
-		alpha.setAnagrams((new ArrayList<Anagram>() {{ add(anagram1); add(anagram2); add(anagram3); }}));
+		alpha.setAnagrams(new ArrayList<Anagram>() {{ add(anagram1); add(anagram2); add(anagram3); }});
 		
 		assertEquals(alpha, anagramListDAOImpl.getAlphabetized(alphabetizedQuery)); 
 	}
@@ -81,7 +81,7 @@ public class AnagramListDAOImplTest {
 		alpha.setAlphabetizedMarker(0);
 		alpha.setAlphabetizedWord("eenrt");
 		alpha.setId(47139);		
-		alpha.setAnagrams((new ArrayList<Anagram>() {{ add(anagram1); add(anagram2); add(anagram3); add(anagram4); }}));
+		alpha.setAnagrams(new ArrayList<Anagram>() {{ add(anagram1); add(anagram2); add(anagram3); add(anagram4); }});
 		
 		assertEquals(alpha, anagramListDAOImpl.getAlphabetized(alphabetizedQuery)); 
 	}

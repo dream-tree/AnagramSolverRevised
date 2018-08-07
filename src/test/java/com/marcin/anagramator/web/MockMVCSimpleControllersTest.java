@@ -1,27 +1,24 @@
-package com.marcin.anagramator.application;
+package com.marcin.anagramator.web;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceContext;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest
-public class MockMVCControllersTest {
+@AutoConfigureMockMvc 
+@SpringBootTest
+public class MockMVCSimpleControllersTest {
 
 	@Autowired
 	private MockMvc mockMvc;
-	@PersistenceContext
-	EntityManagerFactory entityManagerFactory;
 
 	@Test
 	public void testMainControler() throws Exception {
@@ -36,7 +33,7 @@ public class MockMVCControllersTest {
 		.andExpect(status().isOk())
 		.andExpect(view().name("addForm"));
 	}
-	
+
 	@Test
 	public void testUserEntryController2() throws Exception {
 		mockMvc.perform(get("/validateNewEntry"))

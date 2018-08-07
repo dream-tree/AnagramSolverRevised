@@ -1,4 +1,4 @@
-package com.marcin.anagramator.application;
+package com.marcin.anagramator.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,12 +21,12 @@ public class SimpleControllersTest {
     @Autowired
     private UserEntryController userEntryController;
     @Autowired
-    private UserQueryController userQueryResultController;
+    private UserQueryController userQueryController;
 
 	@Test
 	public void testCreatingControllers() throws Exception {
 		assertThat(mainControler).isNotNull();		
-		assertThat(userQueryResultController).isNotNull();
+		assertThat(userQueryController).isNotNull();
 		assertThat(userEntryController).isNotNull();
 	}	
 }
