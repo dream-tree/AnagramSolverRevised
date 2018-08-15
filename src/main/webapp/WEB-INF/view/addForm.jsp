@@ -23,8 +23,7 @@
 </nav>
 <div class="container">
 	<br><br><br><br>
-	<p>Enter below all anagrams of <strong>"${theQuery.alphabetizedWord}"</strong>.</p> 
-	<p>If <strong>"${theQuery.alphabetizedWord}"</strong> is a real word itself, type it too.</p> 
+	<p>Enter below all matching anagrams.</p> 
 	<p>Separate your words by a whitespace and click the "Add" button.</p> 
 	<p>Attention: before adding your anagrams to the database, all words will get an appropriate validation.</p>
 

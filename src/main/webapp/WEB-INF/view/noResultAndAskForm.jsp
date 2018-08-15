@@ -21,7 +21,7 @@
 </nav>
 <div class="container">
 	<br><br><br><br>
- 	Nothing was found for "${theQuery.userSequeceOfLetters}".
+ 	<p>Nothing was found for "${theQuery.userSequeceOfLetters}".</p>
 	<p>If the sequence of letters you entered can form a "real" word and</p>
 	<p>and you want to add it to the database with all of its anagrams altogether (optionally),</p>	
 	<p>you can do it here - click the "Next" button below:</p>
