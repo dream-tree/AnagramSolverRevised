@@ -2,8 +2,8 @@
 
 AnagramSolverExtended project based on the AnagramSolver project.</br>
 Project was migrated to SpringBoot.</br>
-Planned revisions: remodelling entities (done), allowing addition new entries to the database (partly done), allowing removal/update user entries (TODO).</br>
-Project is up and running, though it is still an early stage of it taking into account the features that I'm going to implement.</br>
+Planned revisions: remodelling entities (done), allowing addition new entries to the database (done), allowing user entries removal/update (TODO).</br>
+Project is up and running.</br>
 
 ----
 
