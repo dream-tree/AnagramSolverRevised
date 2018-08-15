@@ -4,8 +4,8 @@ AnagramSolverExtended project based on the AnagramSolver project.</br>
 Project was migrated to SpringBoot.</br>
 Planned revisions: remodelling entities (done), allowing addition new entries to the database (done), allowing user entries removal/update (TODO).</br>
 Project is up and running.</br>
-You can take a look at the video showing my app:
-<a href=https://drive.google.com/file/d/1CyrnMo1jdJrsO_fkhWTt-7OErVgSB9wR/view?usp=sharing>AnagramSolverExtended video</a>
+You can take a look at the video showing my app running:
+<a href="https://drive.google.com/file/d/1CyrnMo1jdJrsO_fkhWTt-7OErVgSB9wR/view?usp=sharing">AnagramSolverExtended video</a>
 
 ----
 
