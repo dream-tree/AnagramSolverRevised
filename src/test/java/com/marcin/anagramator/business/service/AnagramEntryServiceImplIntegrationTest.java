@@ -53,7 +53,7 @@ public class AnagramEntryServiceImplIntegrationTest {
 	public void shouldReturnErrorInExtractAndSaveAnagramsMethodNotAnagramable() {
 		Set<String> actual = service.extractAndSaveAnagrams("abcd dcbx");
 		Set<String> expected = new HashSet<String>();
-		assertEquals(new HashSet<String>(), actual);
+		assertEquals(expected, actual);
 	}
 	
 	@Test

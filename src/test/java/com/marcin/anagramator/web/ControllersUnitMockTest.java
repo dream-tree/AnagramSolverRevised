@@ -40,9 +40,9 @@ public class ControllersUnitMockTest {
     @InjectMocks
     private UserEntryController controller;    
     @MockBean
-    Model model;
+    private Model model;
     @MockBean
-    BindingResult theBindingResult;   
+    private BindingResult theBindingResult;   
  
 	@Before
 	public void setup() {
@@ -61,7 +61,7 @@ public class ControllersUnitMockTest {
 		mockMvc
 			.perform(post("/validateNewEntry", model, userEntry, theBindingResult))
 			.andExpect(status().isOk())
-		.andReturn();
+			.andReturn();
 
 		String outcome = controller.processForm(model, userEntry, theBindingResult);
 		assertThat(outcome, is(equalTo("resultsNewEntry")));

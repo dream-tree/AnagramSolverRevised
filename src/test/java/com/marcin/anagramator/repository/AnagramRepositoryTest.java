@@ -37,7 +37,7 @@ public class AnagramRepositoryTest {
 		alpha.setId(1);		
 		alpha.setAnagrams(new ArrayList<Anagram>() {{ add(anagram1); add(anagram2); }});
 		
-		assertEquals(alpha, anagramListDAOImpl.getAlphabetized(alphabetizedQuery)); 
+		assertEquals(alpha, anagramListDAOImpl.getAnagrams(alphabetizedQuery)); 
 	}
 	
 	@Test
@@ -59,7 +59,7 @@ public class AnagramRepositoryTest {
 		alpha.setId(7112);		
 		alpha.setAnagrams(new ArrayList<Anagram>() {{ add(anagram1); add(anagram2); add(anagram3); }});
 		
-		assertEquals(alpha, anagramListDAOImpl.getAlphabetized(alphabetizedQuery)); 
+		assertEquals(alpha, anagramListDAOImpl.getAnagrams(alphabetizedQuery)); 
 	}
 	
 		@Test
@@ -83,7 +83,7 @@ public class AnagramRepositoryTest {
 		alpha.setId(47139);		
 		alpha.setAnagrams(new ArrayList<Anagram>() {{ add(anagram1); add(anagram2); add(anagram3); add(anagram4); }});
 		
-		assertEquals(alpha, anagramListDAOImpl.getAlphabetized(alphabetizedQuery)); 
+		assertEquals(alpha, anagramListDAOImpl.getAnagrams(alphabetizedQuery)); 
 	}
 }
 			
