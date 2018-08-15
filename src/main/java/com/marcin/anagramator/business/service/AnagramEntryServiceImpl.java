@@ -16,9 +16,9 @@ import com.marcin.anagramator.repository.AnagramRepository;
 /**
  * Provides the implementation of service for creating and validating anagrams from user 
  * input to allow persisting them in the database. 
- * If user input passes the validation, set of unique anagrams are going to be persisted in the database
+ * If user input passes the validation, the set of unique anagrams is going to be persisted in the database
  * and returned to be exposed on the user result web page.
- * If validation fails, returned set is empty, to point there was an error in user input. 
+ * If validation fails, returned set is empty, to point there is an error in the user input. 
  * In this case, database is not affected in any way. 
  * 
  * @author dream-tree
@@ -49,13 +49,13 @@ public class AnagramEntryServiceImpl implements AnagramEntryService {
 		}		
 		if(userAlphabetized.equals("error")
 			/* final confirmation whether entry exists in the database */
-			|| anagramsListDAO.getAlphabetized(userAlphabetized).getAnagrams()!=null) {
+			|| anagramsListDAO.getAnagrams(userAlphabetized).getAnagrams()!=null) {
 			userAnagrams.clear();
 			return userAnagrams;
 		} else {
 			Alphabetized userAlphabetizedObject = new Alphabetized(1, userAlphabetized);
 			addAnagramsToAlphabetizedObject(userAlphabetizedObject, userAnagrams);			
-			anagramsListDAO.saveAnagramsList(userAlphabetizedObject);
+			anagramsListDAO.saveAnagrams(userAlphabetizedObject);
 			return userAnagrams;
 		}		
 	}
@@ -68,7 +68,7 @@ public class AnagramEntryServiceImpl implements AnagramEntryService {
 	 * @param anagramsString a single string of anagrams for further processing
 	 * @return a result multi-map of an alphabetized word and the corresponding list of anagrams;
 	 * 			if any word does not match the alphabetized word, 
-	 * 			the multi-map key contains an "error" string for additional processing
+	 * 			the multi-map key contains an "error" flag for additional processing
 	 */
 	public Map<String, Set<String>> splitAndValidateEntry(String anagramsString) {
 		String[] splitted = anagramsString.split("\\s+");
@@ -94,10 +94,14 @@ public class AnagramEntryServiceImpl implements AnagramEntryService {
 	}	
 	
 	/**
-	 *  TODO
+	 * Constructs the Anagram objects based on user anagram words,
+	 * adds those Anagram objects to the list of Anagrams 
+	 * and sets the list to the Alphabetized object.
+	 * @param userAlphabetizedObject Alphabetized object to be set with user anagrams
+	 * @param userAnagrams user anagrams to be added to the Alphabetized object
 	 */
-	public void addAnagramsToAlphabetizedObject(Alphabetized userAlphabetizedObject, Set<String> userListOfStrings) {
-		for(String singleString : userListOfStrings) {
+	public void addAnagramsToAlphabetizedObject(Alphabetized userAlphabetizedObject, Set<String> userAnagrams) {
+		for(String singleString : userAnagrams) {
 			Anagram userSingleAnagram = new Anagram(1, singleString);
 			userAlphabetizedObject.add(userSingleAnagram);
 		}

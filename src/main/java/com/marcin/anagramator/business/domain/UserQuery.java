@@ -6,7 +6,7 @@ import javax.validation.constraints.Pattern;
 import org.springframework.stereotype.Component;
 
 /**
- * Class serves as a data holder for user input (query from a web page).
+ * Class serves as a data holder for user input - query from a web page.
  * 
  * @author dream-tree
  * @version 3.00, June-July 2018
@@ -15,16 +15,11 @@ import org.springframework.stereotype.Component;
 public class UserQuery {
 
 	/**
-	 * User input data holder.
+	 * User query data holder.
 	 */
 	@NotNull
 	@Pattern(regexp="[a-zA-Z]{3,}", message="Only letters allowed (3 or more).")
 	private String userSequeceOfLetters;
-	
-	/**
-	 * User query result data holder.
-	 * Used to expose reference data to a web view through the accessor method.
-	 */
 	
 	public UserQuery() {
 	}

@@ -2,8 +2,6 @@ package com.marcin.anagramator.business.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.marcin.anagramator.business.domain.UserQuery;
 
 /**
@@ -18,7 +16,7 @@ import com.marcin.anagramator.business.domain.UserQuery;
 public interface AnagramQueryService {
 
 	/**
-	 * Parses user input to make available fetching corresponding anagrams from the database.
+	 * Parses user input to make available fetching the corresponding anagrams from the database.
 	 * @param userQuery
 	 *			user query typed in the web page form to find appropriate anagrams 
 	 * @return list of unique words fetched from the database; 	

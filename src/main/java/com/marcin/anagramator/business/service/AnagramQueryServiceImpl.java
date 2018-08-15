@@ -36,7 +36,7 @@ public class AnagramQueryServiceImpl implements AnagramQueryService {
 	@Override
 	public List<String> findAnagramsForUserQuery(UserQuery userQuery) {
 		String alphabetizedWord = alphabetize(userQuery.getUserSequeceOfLetters());   
-		Alphabetized alphabetizedObject = anagramsListDAO.getAlphabetized(alphabetizedWord);	
+		Alphabetized alphabetizedObject = anagramsListDAO.getAnagrams(alphabetizedWord);	
 		List<String> listOfFoundAnagrams = new ArrayList<>();
 		if(alphabetizedObject.getAnagrams()==null)
 			return listOfFoundAnagrams;

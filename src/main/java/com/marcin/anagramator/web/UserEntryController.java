@@ -62,8 +62,7 @@ public class UserEntryController {
 		Set<String> userAnagrams = anagramService.extractAndSaveAnagrams(userStringOfAnagrams);	
 		if(userAnagrams.isEmpty()) {
 			return "resultsError";
-		}
-		else {
+		} else {
 			newAnagrams.addAttribute("anagramsForDisplaying", userAnagrams);
 			return "resultsNewEntry";
 		}

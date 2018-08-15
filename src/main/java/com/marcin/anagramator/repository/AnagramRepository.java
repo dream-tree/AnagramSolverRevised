@@ -1,7 +1,5 @@
 package com.marcin.anagramator.repository;
 
-import java.util.Set;
-
 import com.marcin.anagramator.domain.Alphabetized;
 
 /**
@@ -14,18 +12,26 @@ import com.marcin.anagramator.domain.Alphabetized;
 public interface AnagramRepository {
 
 	/**
-	 * Gets all matching words from the database that are anagrams of the user query string.
-	 * @param alphabetizedWord string of letters from user query sorted lexicographically
-	 * @return string of anagrams
+	 * Gets all matching words from the database that are the anagrams of the user
+	 * query (string of characters).
+	 * 
+	 * @param alphabetized
+	 *            string of characters from the user query sorted lexicographically
+	 * @return Alphabetized object containing an Alphabetized word and all matching
+	 *         anagrams to be displayed on the result web page
 	 */
-	public Alphabetized getAlphabetized(String alphabetized);
-	
+	public Alphabetized getAnagrams(String alphabetized);
+
 	/**
-	 * Saves new word and all of its anagrams (optionally) to the database. 
-	 * New word means a word which does not exist in the database yet. 
-	 * @param newEntryAlphabetized alphabetized word to be added to the database
-	 * @param newEntryAnagramsString list of strings (anagrams) to be added to the database
+	 * Saves a new word and all of its anagrams (optionally) to the database. 
+	 * New word means a word which does not exist in the database yet.
+	 * Anagrams are stored in the database as an Alphabetized object.
+	 * 
+	 * @param userAlphabetizedObject
+	 *            an Alphabetized object to be added to the database
+	 * @return Alphabetized object containing an alphabetized word and all matching
+	 *         anagrams saved in the database
 	 */
-	public Alphabetized saveAnagramsList(Alphabetized userAlphabetizedObject);
-	
+	public Alphabetized saveAnagrams(Alphabetized userAlphabetizedObject);
+
 }

@@ -1,7 +1,5 @@
 package com.marcin.anagramator.repository;
 
-import java.util.Set;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -11,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.marcin.anagramator.domain.Alphabetized;
-import com.marcin.anagramator.domain.Anagram;
 
 /**
  * DAO class implementing the {@link AnagramRepository} interface
@@ -33,7 +30,7 @@ public class AnagramRepositoryImpl implements AnagramRepository {
 	 */
 	@Override
 	@Transactional
-	public Alphabetized getAlphabetized(String alphabetizedQuery) {	
+	public Alphabetized getAnagrams(String alphabetizedQuery) {	
 		Alphabetized tempAlphabetized = new Alphabetized();
 		try {
 			tempAlphabetized = 
@@ -55,7 +52,7 @@ public class AnagramRepositoryImpl implements AnagramRepository {
 	 */
 	@Override
 	@Transactional
-	public Alphabetized saveAnagramsList(Alphabetized userAlphabetizedObject) {
+	public Alphabetized saveAnagrams(Alphabetized userAlphabetizedObject) {
 		try {
 			entityManager.persist(userAlphabetizedObject); 				
 		} catch (Exception ex) {

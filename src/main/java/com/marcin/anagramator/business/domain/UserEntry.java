@@ -6,8 +6,9 @@ import javax.validation.constraints.Pattern;
 import org.springframework.stereotype.Component;
 
 /**
- * Class serves as a data holder for user input - 
- * list of anagrams as a single string.
+ * Class serves as a data holder for user input - list of anagrams as a single string
+ * to be added to the database after the process of validation.
+ * User input is splitted into separate anagrams and validated in the further process.
  * 
  * @author dream-tree
  * @version 3.00, June-July 2018
@@ -16,13 +17,11 @@ import org.springframework.stereotype.Component;
 public class UserEntry {
 
 	/**
-	 * Serves as an input data holder for a single string of anagrams 
-	 * to be added to the database after the process of validation.
-	 * User input is splitted into separate anagrams and validated in the further process.
+	 * User input data holder.	
 	 */
 	@NotNull
 	@Pattern(regexp="[a-zA-Z]{3,}(\\s+[a-zA-Z]{3,})*", 
-				message="Only three or more letters words allowed separated by white space. Only letters allowed. ")
+				message="Only three or more letters words allowed separated by white space. Only letters allowed.")
 	private String stringOfAnagrams;
 	
 	public UserEntry() {
