@@ -5,7 +5,7 @@ Project was migrated to SpringBoot.</br>
 Planned revisions: remodelling entities (done), allowing addition new entries to the database (done), allowing user entries removal/update (TODO).</br>
 Project is up and running.</br>
 You can take a look at the video showing my app running:
-<a href="https://drive.google.com/open?id=1wf1ew79VQd8R2n4IGyKTEr5Pn7Y8fZXI" target="_blank">AnagramSolverExtended video</a> (GoogleDrive link, size: 2,08 MB, resolution: 1440x930).
+<a href="AnagramSolverExtendedVideo" target="_blank">AnagramSolverExtended video</a> (YouTube link, size: 2,25 MB, HD).
 
 ----
 
