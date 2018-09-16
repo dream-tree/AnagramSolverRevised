@@ -9,18 +9,18 @@ import java.util.Set;
  * rather than directly through the repository interface.
  * 
  * @author dream-tree
- * @version 3.00, June-July 2018
+ * @version 4.00, June-September 2018
  */
 public interface AnagramEntryService {
 
 	/**
 	 * Parses user input to extract anagrams and validates all words against given anagram pattern.
 	 * If validation passes, anagrams are forwarded to repository to be saved in the database.
-	 * @param userAnagramsString
-	 *			user's words (anagrams) typed in the web page form
+	 * @param userInput user query from the web form
+	 * @param userAnagramsString user's words (anagrams) typed in the web page form
 	 * @return set of unique words; every single returned word is an anagram to each
 	 *			other in the returned set; set is to be exposed on the web page
 	 */
-	public Set<String> extractAndSaveAnagrams(String userAnagramsString);
+	public Set<String> extractAndSaveAnagrams(String userInput, String userAnagramsString);
 	
 }

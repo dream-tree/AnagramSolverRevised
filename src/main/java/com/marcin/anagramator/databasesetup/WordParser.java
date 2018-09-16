@@ -1,7 +1,6 @@
 package com.marcin.anagramator.databasesetup;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
@@ -20,7 +19,7 @@ import ch.qos.logback.classic.Logger;
  * Results are stored in a multi-map.
  * 
  * @author dream-tree
- * @version 3.00, June-July 2018
+ * @version 4.00, June-September 2018
  */
 public class WordParser {
 

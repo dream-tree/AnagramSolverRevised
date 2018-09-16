@@ -9,7 +9,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  * Starting point of the application.
  * 
  * @author dream-tree
- * @version 3.00, June-July 2018
+ * @version 4.00, June-September 2018
  */
 
 /*

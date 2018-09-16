@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Results</title>
+	<title>No Results</title>
 	<meta charset="UTF-8">
 	<link type="text/css" rel="stylesheet" href="/resources/static/header-footer.css" />
 </head>
@@ -21,34 +21,27 @@
 	<div class="container">
 		<br>
 		<br>
-		<h3>
-			<strong>Output page.</strong>
-		</h3>
-		<br>
-		Found words for your query <strong>"${theQuery.userSequeceOfLetters}"</strong>:
+		<p>
+			Nothing was found for <strong>"${theQuery.userSequeceOfLetters}".</strong>
+		</p>
+		<p>If the sequence of letters you entered can form a "real" word
+			and</p>
+		<p>and you want to add it to the database with all of its anagrams
+			altogether (optionally),</p>
+		<p>you can do it here - click the "Next" button below:</p>
 
-		<c:url var="del" value="/deleteEntries">
-			<c:param name="sequence" value="${theQuery.userSequeceOfLetters}" />
+		<c:url var="showUserInput" value="/processWordForm">
+			<c:param name="userInput" value="${theQuery.userSequeceOfLetters}"></c:param>
 		</c:url>
 
-		<form:form action="${del}" modelAttribute="anArrayForDeleting">
-			<ul>
-				<c:forEach var="anagram" items="${theListOfAnagrams}">
-					<li><strong>${anagram}</strong> &nbsp;&nbsp;&#x21E8; <form:checkbox
-							path="wordsForDeleting" value="${anagram}" /></li>
-				</c:forEach>
-			</ul>	
-			If you want to delete a word, check the appropriate box and hit Delete button.
-			<br>
-			<br>
-			<input type="submit" value="Delete" />
+		<form:form action="${showUserInput}">
+			<input type="submit" value="Next">
 		</form:form>
 		<br>
-		<br>
+		<p>Otherwise you can go back:</p>
 		<form:form action="showForm">
 			<input type="submit" value="Go back" />
 		</form:form>
-		<br>
 
 	</div>
 	<div id="wrapper">

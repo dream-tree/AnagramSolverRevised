@@ -25,7 +25,7 @@ public class AnagramQueryServiceImplTest {
 	public void findFindAnagramsForUserQueryShouldReturnResultList() {
 		UserQuery sampleUserQuery = new UserQuery();
 		sampleUserQuery.setUserSequeceOfLetters("read");
-		List<String> actual = service.findAnagramsForUserQuery(sampleUserQuery);
+		List<String> actual = service.findAnagrams(sampleUserQuery);
 		List<String> expected = new ArrayList<String>() {{ add("dare"); add("dear"); add("read");}};
 		assertNotNull(actual);
 		assertEquals(expected, actual);
@@ -35,7 +35,7 @@ public class AnagramQueryServiceImplTest {
 	public void findAnagramsForUserQueryShouldReturnNoResult() {
 		UserQuery sampleUserQuery = new UserQuery();
 		sampleUserQuery.setUserSequeceOfLetters("aaaa");
-		List<String> actual = service.findAnagramsForUserQuery(sampleUserQuery);
+		List<String> actual = service.findAnagrams(sampleUserQuery);
 		assertNotNull(actual);
 		assertEquals(new ArrayList<String>(), actual);
 	}

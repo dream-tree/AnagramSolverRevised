@@ -60,8 +60,8 @@ public class AnagramEntryServiceImplUnitTest {
 		aMockAlphabetized.setAlphabetizedWord("axxxzzz");
 		aMockAlphabetized.setAnagrams(mockListOfAnagrams);
 		
-		when(repository.getAnagrams(any(String.class))).thenReturn(new Alphabetized());		
-		when(repository.saveAnagrams(any(Alphabetized.class))).thenReturn(aMockAlphabetized);
+		when(repository.getAlphabetized(any(String.class))).thenReturn(new Alphabetized());		
+		when(repository.saveAlphabetized(any(Alphabetized.class))).thenReturn(aMockAlphabetized);
 		
 		Set<String> newSetOfAnagrams = service.extractAndSaveAnagrams("axxxzzz zzzaxxx xxxazzz");
 		Set<String> fetched = aMockAlphabetized.getAnagrams()

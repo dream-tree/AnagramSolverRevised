@@ -6,12 +6,12 @@ import javax.validation.constraints.Pattern;
 import org.springframework.stereotype.Component;
 
 /**
- * Class serves as a data holder for user input - list of anagrams as a single string
- * to be added to the database after the process of validation.
+ * Class serves as a data holder for user input, i.e. the list of anagrams as a single string.
+ * List of anagrams is to be added to the database after the process of validation.
  * User input is splitted into separate anagrams and validated in the further process.
  * 
  * @author dream-tree
- * @version 3.00, June-July 2018
+ * @version 4.00, June-September 2018
  */
 @Component
 public class UserEntry {
@@ -19,24 +19,23 @@ public class UserEntry {
 	/**
 	 * User input data holder.	
 	 */
-	@NotNull
-	@Pattern(regexp="[a-zA-Z]{3,}(\\s+[a-zA-Z]{3,})*", 
-				message="Only three or more letters words allowed separated by white space. Only letters allowed.")
-	private String stringOfAnagrams;
-	
+	@NotNull(message="{user.null.message}")
+	@Pattern(regexp="[a-zA-Z]{3,}(\\s+[a-zA-Z]{3,})*", message="{userEntry.message}")
+	private String userWords;
+		
 	public UserEntry() {
 	}
 
-	public String getStringOfAnagrams() {
-		return stringOfAnagrams;
+	public String getUserWords() {
+		return userWords;
 	}
 
-	public void setStringOfAnagrams(String stringOfAnagrams) {
-		this.stringOfAnagrams = stringOfAnagrams;
+	public void setUserWords(String userWords) {
+		this.userWords = userWords;
 	}
 
 	@Override
 	public String toString() {
-		return "UserEntry [stringOfAnagrams=" + stringOfAnagrams + "]";
+		return "UserEntry [stringOfAnagrams=" + userWords + "]";
 	}
 }

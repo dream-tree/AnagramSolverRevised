@@ -18,7 +18,7 @@ import javax.persistence.Table;
  * relating to the list of strings or, in the other words - the list of {@link #anagrams}.
  * 
  * @author dream-tree
- * @version 3.00, June-July 2018
+ * @version 4.00, June-September 2018
  */
 @Entity
 @Table(name="alphabetized")
@@ -30,21 +30,9 @@ public class Alphabetized {
 	private int id;
 	
 	/**
-	 * Points if a given alphabetized word is an original database entry 
-	 * or if it is added by the user.
-	 * No original database entry (alphabetized word) can be deleted.
-	 */
-	@Column(name="alphabetized_marker")
-	private int alphabetizedMarker;
-	
-	/**
 	 * An alphabetized word (key).
-	 * Alphabetized means that all chars of a given word are lexicographically sorted.
+	 * Alphabetized stands for all chars of a given word sorted lexicographically.
 	 * New string created in that way is called an alphabetized word.
-	 * <ul>
-	 * <li>0 means an original database entry</li>
-	 * <li>1 means a database entry added by user</li>
-	 * </ul>
 	 */
 	@Column(name="alphabetized_word")
 	private String alphabetizedWord;
@@ -58,8 +46,7 @@ public class Alphabetized {
 	public Alphabetized() {
 	}
 
-	public Alphabetized(int alphabetizedMarker, String alphabetizedWord) {
-		this.alphabetizedMarker = alphabetizedMarker;
+	public Alphabetized(String alphabetizedWord) {
 		this.alphabetizedWord = alphabetizedWord;
 	}
 
@@ -84,14 +71,6 @@ public class Alphabetized {
 		this.id = id;
 	}
 
-	public int getAlphabetizedMarker() {
-		return alphabetizedMarker;
-	}
-
-	public void setAlphabetizedMarker(int alphabetizedMarker) {
-		this.alphabetizedMarker = alphabetizedMarker;
-	}
-
 	public String getAlphabetizedWord() {
 		return alphabetizedWord;
 	}
@@ -110,15 +89,13 @@ public class Alphabetized {
 
 	@Override
 	public String toString() {
-		return "Alphabetized [id=" + id + ", alphabetizedMarker=" + alphabetizedMarker + 
-				", alphabetizedWord=" + alphabetizedWord + ", anagrams list: " + anagrams + "]";
+		return "Alphabetized [id=" + id + ", alphabetizedWord=" + alphabetizedWord + ", anagrams list: " + anagrams + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + alphabetizedMarker;
 		result = prime * result + ((alphabetizedWord == null) ? 0 : alphabetizedWord.hashCode());
 		result = prime * result + ((anagrams == null) ? 0 : anagrams.hashCode());
 		result = prime * result + id;
@@ -134,15 +111,18 @@ public class Alphabetized {
 		if (getClass() != obj.getClass())
 			return false;
 		Alphabetized other = (Alphabetized) obj;
-		if (alphabetizedMarker != other.alphabetizedMarker)
-			return false;
 		if (alphabetizedWord == null) {
 			if (other.alphabetizedWord != null)
 				return false;
 		} else if (!alphabetizedWord.equals(other.alphabetizedWord))
 			return false;
+		if (anagrams == null) {
+			if (other.anagrams != null)
+				return false;
+		} else if (!anagrams.equals(other.anagrams))
+			return false;
 		if (id != other.id)
 			return false;
 		return true;
-	}
+	}	
 }	

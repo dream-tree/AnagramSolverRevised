@@ -2,35 +2,35 @@ package com.marcin.anagramator.repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.marcin.anagramator.domain.Alphabetized;
 
 /**
- * DAO class implementing the {@link AnagramRepository} interface
+ * Repository implementing the {@link AlphabetizedRepository} interface
  * for CRUD operations and the common queries.
  * This implementation uses the Hibernate ORM framework.
  * 
  * @author dream-tree
- * @version 3.00, June-July 2018
+ * @version 4.00, June-September 2018
  */
 @Repository
-public class AnagramRepositoryImpl implements AnagramRepository {
-	
+public class AlphabetizedRepositoryImpl implements AlphabetizedRepository {
+
 	@PersistenceContext
 	private EntityManager entityManager;
-	private static final Logger LOGGER = LoggerFactory.getLogger(AnagramRepository.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(AlphabetizedRepositoryImpl.class);
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	@Transactional
-	public Alphabetized getAnagrams(String alphabetizedQuery) {	
+	public Alphabetized getAlphabetized(String alphabetizedQuery) {	
 		Alphabetized tempAlphabetized = new Alphabetized();
 		try {
 			tempAlphabetized = 
@@ -42,7 +42,7 @@ public class AnagramRepositoryImpl implements AnagramRepository {
 					.setParameter("theWord", alphabetizedQuery)
 					.getSingleResult();
 		} catch (Exception ex) {
-			LOGGER.info("Hibernate database query error.", ex.toString(), ex);
+			LOGGER.info("Hibernate database fetching error.", ex.toString(), ex);
 		}
 		return tempAlphabetized;
 	}
@@ -52,12 +52,30 @@ public class AnagramRepositoryImpl implements AnagramRepository {
 	 */
 	@Override
 	@Transactional
-	public Alphabetized saveAnagrams(Alphabetized userAlphabetizedObject) {
+	public Alphabetized saveAlphabetized(Alphabetized userAlphabetizedObject) {
 		try {
 			entityManager.persist(userAlphabetizedObject); 				
 		} catch (Exception ex) {
-			LOGGER.info("Hibernate database save error.", ex.toString(), ex);
+			LOGGER.info("Hibernate database saving error.", ex.toString(), ex);
 		}
 		return userAlphabetizedObject;
+	}
+		
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	@Transactional
+	public void deleteAlphabetized(String alphabetizedWord) {
+		try {
+			Alphabetized alpha = entityManager.createQuery(
+					"SELECT a FROM Alphabetized a " + 
+					"WHERE a.alphabetizedWord=:alpha", Alphabetized.class)
+			.setParameter("alpha", alphabetizedWord)
+			.getSingleResult();	
+			entityManager.remove(alpha);			
+		} catch (Exception ex) {
+			LOGGER.info("Hibernate database removal error.", ex.toString(), ex);
+		}
 	}
 }

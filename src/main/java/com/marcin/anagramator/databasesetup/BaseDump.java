@@ -14,7 +14,7 @@ import com.marcin.anagramator.domain.Anagram;
  * Class saves all entries to the database.
  * 
  * @author dream-tree
- * @version 3.00, June-July 2018
+ * @version 4.00, June-September 2018
  */
 public class BaseDump {
 	
@@ -33,11 +33,11 @@ public class BaseDump {
 			for(String s : map.keySet()) {
 				session = factory.getCurrentSession();
 				session.beginTransaction();
-				Alphabetized alphabetized = new Alphabetized(0, s);					
+				Alphabetized alphabetized = new Alphabetized(s);					
 				List<String> listOfanagrams = map.get(s);
 				session.save(alphabetized);
 				for(String t : listOfanagrams) {
-					Anagram tempAnagram = new Anagram(0, t);
+					Anagram tempAnagram = new Anagram(t);
 					alphabetized.add(tempAnagram);
 					session.save(tempAnagram);
 				}				

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Results</title>
+	<title>New Entry</title>
 	<meta charset="UTF-8">
 	<link type="text/css" rel="stylesheet" href="/resources/static/header-footer.css" />
 </head>
@@ -21,40 +21,37 @@
 	<div class="container">
 		<br>
 		<br>
-		<h3>
-			<strong>Output page.</strong>
-		</h3>
-		<br>
-		Found words for your query <strong>"${theQuery.userSequeceOfLetters}"</strong>:
 
-		<c:url var="del" value="/deleteEntries">
-			<c:param name="sequence" value="${theQuery.userSequeceOfLetters}" />
-		</c:url>
+		<c:if test="${anagramsForDisplaying.isEmpty()}">
+			<h2>
+				<strong> Your anagrams did not match your initial input: ${theUserInput}.<br>
+				<br> Try again.
+				</strong>
+			</h2>
+		</c:if>
 
-		<form:form action="${del}" modelAttribute="anArrayForDeleting">
-			<ul>
-				<c:forEach var="anagram" items="${theListOfAnagrams}">
-					<li><strong>${anagram}</strong> &nbsp;&nbsp;&#x21E8; <form:checkbox
-							path="wordsForDeleting" value="${anagram}" /></li>
+		<c:if test="${!anagramsForDisplaying.isEmpty()}">
+			<h1>
+				<strong>Success!</strong>
+			</h1>
+		You added the following words to the anagramator database:
+		<ul>
+				<c:forEach var="anagram" items="${anagramsForDisplaying}">
+					<li>${anagram}</li>
 				</c:forEach>
-			</ul>	
-			If you want to delete a word, check the appropriate box and hit Delete button.
-			<br>
-			<br>
-			<input type="submit" value="Delete" />
-		</form:form>
-		<br>
+			</ul>
+		</c:if>
 		<br>
 		<form:form action="showForm">
 			<input type="submit" value="Go back" />
 		</form:form>
 		<br>
 
-	</div>
+	</div>	
 	<div id="wrapper">
 		<div id="bottom">
 			<h5>@Copyright 2018 dream-tree</h5>
 		</div>
-	</div>
+	</div>	
 </body>
 </html>

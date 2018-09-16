@@ -11,32 +11,32 @@ import org.springframework.stereotype.Service;
 import com.marcin.anagramator.business.domain.UserQuery;
 import com.marcin.anagramator.domain.Alphabetized;
 import com.marcin.anagramator.domain.Anagram;
-import com.marcin.anagramator.repository.AnagramRepository;
+import com.marcin.anagramator.repository.AlphabetizedRepository;
 
 /**
  * Provides the implementation of service for fetching anagrams from the database 
  * based on the user web page query. 
  * 
  * @author dream-tree
- * @version 3.00, June-July 2018
+ * @version 4.00, June-September 2018
  */
 @Service
 public class AnagramQueryServiceImpl implements AnagramQueryService {
 
-	private AnagramRepository anagramsListDAO;
+	private AlphabetizedRepository alphabetizedRepository;
 	
 	@Autowired
-	public AnagramQueryServiceImpl(AnagramRepository anagramsListDAO) {
-		this.anagramsListDAO = anagramsListDAO;
+	public AnagramQueryServiceImpl(AlphabetizedRepository alphabetizedRepository) {
+		this.alphabetizedRepository = alphabetizedRepository;
 	}
 	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<String> findAnagramsForUserQuery(UserQuery userQuery) {
+	public List<String> findAnagrams(UserQuery userQuery) {
 		String alphabetizedWord = alphabetize(userQuery.getUserSequeceOfLetters());   
-		Alphabetized alphabetizedObject = anagramsListDAO.getAnagrams(alphabetizedWord);	
+		Alphabetized alphabetizedObject = alphabetizedRepository.getAlphabetized(alphabetizedWord);	
 		List<String> listOfFoundAnagrams = new ArrayList<>();
 		if(alphabetizedObject.getAnagrams()==null)
 			return listOfFoundAnagrams;
@@ -58,5 +58,5 @@ public class AnagramQueryServiceImpl implements AnagramQueryService {
 		char[] a = s.toLowerCase().toCharArray();
 		Arrays.sort(a);
 		return new String(a);
-	}	
+	}
 }
