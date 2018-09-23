@@ -14,19 +14,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
-import com.marcin.anagramator.business.domain.UserEntry;
 import com.marcin.anagramator.business.domain.UserQuery;
 
 @RunWith(SpringRunner.class)              
 @SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)
-public class ControllersIntegrationTest {
+public class UserQueryControllerIntegrationTest {
 
 	@Autowired
 	private MainController mainControler;
 	@Autowired
 	private UserQueryController userQueryController;
-	@Autowired
-	private UserEntryController userEntryController;
 
 	@Mock
 	Model words;
@@ -36,7 +33,13 @@ public class ControllersIntegrationTest {
 	@Test
 	public void mainControlerShouldReturnMainMenuJspPage() throws Exception {
 		String outcome = mainControler.showMainMenu();
-		assertThat(outcome, is(equalTo("mainMenu")));
+		assertThat(outcome, is(equalTo("main-menu")));
+	}	
+		
+	@Test
+	public void userQueryControllerShouldReturnInputFormJspPage() throws Exception {
+		String outcome = userQueryController.showForm(words);
+		assertThat(outcome, is(equalTo("input-form")));
 	}	
 		
 	@Test
@@ -44,7 +47,7 @@ public class ControllersIntegrationTest {
 		UserQuery userQuery = new UserQuery();
 		userQuery.setUserSequeceOfLetters("good");
 		String outcome = userQueryController.processForm(words, userQuery, theBindingResult);
-		assertThat(outcome, is(equalTo("results")));
+		assertThat(outcome, is(equalTo("results")));	
 	}
 	
 	@Test
@@ -52,14 +55,6 @@ public class ControllersIntegrationTest {
 		UserQuery userQuery = new UserQuery();
 		userQuery.setUserSequeceOfLetters("noSuchWordInDatabase");
 		String outcome = userQueryController.processForm(words, userQuery, theBindingResult);
-		assertThat(outcome, is(equalTo("noResultAndAskForm")));
+		assertThat(outcome, is(equalTo("no-result-and-ask-form")));
 	}
-		
-	@Test
-	public void userEntryControllerShouldReturnNoResultAndAskFormJspPage() throws Exception {
-		UserEntry userEntry = new UserEntry();
-		userEntry.setStringOfAnagrams("goodOK goodNO");
-		String outcome = userEntryController.processForm(words, userEntry, theBindingResult);
-		assertThat(outcome, is(equalTo("resultsError")));
-	}	
 }

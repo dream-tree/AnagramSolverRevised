@@ -43,10 +43,8 @@ public class AnagramEntryServiceImpl implements AnagramEntryService {
 			Alphabetized alphabetized = new Alphabetized(alphabetizedPattern);
 			addAnagramsToAlphabetized(alphabetized, splittedUserAnagramsString);			
 			alphabetizedRepository.saveAlphabetized(alphabetized);			
-			return splittedUserAnagramsString;
-		} else {
-			return splittedUserAnagramsString;
-		}		
+		} 
+		return splittedUserAnagramsString;	
 	}
 	
 	/**

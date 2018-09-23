@@ -15,10 +15,10 @@ import com.marcin.anagramator.domain.Anagram;
 
 @RunWith(SpringRunner.class)              
 @SpringBootTest
-public class AnagramRepositoryTest {
+public class AlphabetizedRepositoryTest {
 	
 	@Autowired
-	private AnagramRepositoryImpl anagramListDAOImpl;
+	private AlphabetizedRepositoryImpl repository;
 	
 	@Test
 	public void shouldGetRightAnagrams1() {
@@ -32,12 +32,11 @@ public class AnagramRepositoryTest {
 		Anagram anagram2 = new Anagram();
 		anagram2.setAnagramWord("aha");
 		
-		alpha.setAlphabetizedMarker(0);
 		alpha.setAlphabetizedWord("aah");
 		alpha.setId(1);		
 		alpha.setAnagrams(new ArrayList<Anagram>() {{ add(anagram1); add(anagram2); }});
 		
-		assertEquals(alpha, anagramListDAOImpl.getAlphabetized(alphabetizedQuery)); 
+		assertEquals(alpha, repository.getAlphabetized(alphabetizedQuery)); 
 	}
 	
 	@Test
@@ -54,12 +53,11 @@ public class AnagramRepositoryTest {
 		Anagram anagram3 = new Anagram();
 		anagram3.setAnagramWord("pepla");
 		
-		alpha.setAlphabetizedMarker(0);
 		alpha.setAlphabetizedWord("aelpp");
 		alpha.setId(7112);		
 		alpha.setAnagrams(new ArrayList<Anagram>() {{ add(anagram1); add(anagram2); add(anagram3); }});
 		
-		assertEquals(alpha, anagramListDAOImpl.getAlphabetized(alphabetizedQuery)); 
+		assertEquals(alpha, repository.getAlphabetized(alphabetizedQuery)); 
 	}
 	
 		@Test
@@ -78,12 +76,11 @@ public class AnagramRepositoryTest {
 		Anagram anagram4 = new Anagram();
 		anagram4.setAnagramWord("treen");		
 		
-		alpha.setAlphabetizedMarker(0);
 		alpha.setAlphabetizedWord("eenrt");
 		alpha.setId(47139);		
 		alpha.setAnagrams(new ArrayList<Anagram>() {{ add(anagram1); add(anagram2); add(anagram3); add(anagram4); }});
 		
-		assertEquals(alpha, anagramListDAOImpl.getAlphabetized(alphabetizedQuery)); 
+		assertEquals(alpha, repository.getAlphabetized(alphabetizedQuery)); 
 	}
 }
 			

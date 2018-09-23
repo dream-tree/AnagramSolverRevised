@@ -3,7 +3,6 @@ package com.marcin.anagramator.business.service;
 import static org.junit.Assert.assertEquals;
 
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import org.junit.Test;
@@ -20,46 +19,37 @@ public class AnagramEntryServiceImplIntegrationTest {
 	private AnagramEntryServiceImpl service;
 	
 	@Test
-	public void shouldReturnResultOfFirstIfConditionalInSplitAndValidateEntryMethod() {
-		Map<String, Set<String>> actual = service.splitAndValidateEntry("ab ba");
-		Map<String, Set<String>> expected = Map.of("error", new HashSet<>());
+	public void shouldReturnSetOfAnagrams() {
+		Set<String> actual = service.splitAndValidateEntry("ader", "read dear reda");
+		Set<String> expected = Set.of("dear", "reda", "read");
 		assertEquals(expected, actual);
 	}
 	
 	@Test
-	public void shouldReturnResultOfSecondIfConditionalInSplitAndValidateEntryMethod() {
-		Map<String, Set<String>> actual = service.splitAndValidateEntry("track");
-		Map<String, Set<String>> expected = Map.of("ackrt", new HashSet<String>() {{ add("track"); }});
+	public void shouldReturnSetOfAnagramsAfterProperSplit() {
+		Set<String> actual = service.splitAndValidateEntry("ader", "read      dear  reda");
+		Set<String> expected = Set.of("dear", "reda", "read");
 		assertEquals(expected, actual);
 	}
 	
 	@Test
-	public void shouldReturnResultOfElseConditionalInSplitAndValidateEntryMethod() {
-		Map<String, Set<String>> actual = service.splitAndValidateEntry("abcd dcba aaaa");
-		Set<String> testSet = new HashSet<String>() {{ add("abcd"); add("dcba"); }};
-		Map<String, Set<String>> expected = Map.of("error", testSet);
-		assertEquals(expected, actual);
-	}
-		
-	@Test
-	public void shouldReturnFinalResultOfIfElseConditionalInSplitAndValidateEntryMethod() {
-		Map<String, Set<String>> actual = service.splitAndValidateEntry("abcd dcba cdba");
-		Set<String> testSet = new HashSet<String>() {{ add("abcd"); add("dcba"); add("cdba"); }};
-		Map<String, Set<String>> expected = Map.of("abcd", testSet);
+	public void shouldReturnSetWithSingleAnagram() {
+		Set<String> actual = service.splitAndValidateEntry("ddehin", "hidden");
+		Set<String> expected = Set.of("hidden");
 		assertEquals(expected, actual);
 	}
 	
 	@Test
-	public void shouldReturnErrorInExtractAndSaveAnagramsMethodNotAnagramable() {
-		Set<String> actual = service.extractAndSaveAnagrams("abcd dcbx");
-		Set<String> expected = new HashSet<String>();
+	public void shouldReturnEmptySetWhenValidationFails() {
+		Set<String> actual = service.splitAndValidateEntry("ader", "read dear reeda");
+		Set<String> expected = new HashSet<>();
 		assertEquals(expected, actual);
 	}
 	
 	@Test
-	public void shouldReturnErrorInExtractAndSaveAnagramsMethodAlredyInDatabase() {
-		Set<String> actual = service.extractAndSaveAnagrams("read dare");
-		Set<String> expected = new HashSet<String>();
+	public void shouldReturnEmptySetWhenValidationFails2() {
+		Set<String> actual = service.splitAndValidateEntry("ader", "aderader");
+		Set<String> expected = new HashSet<>();
 		assertEquals(expected, actual);
 	}
 }

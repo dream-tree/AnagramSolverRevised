@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -21,54 +22,76 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
 import com.marcin.anagramator.domain.Alphabetized;
 import com.marcin.anagramator.domain.Anagram;
-import com.marcin.anagramator.repository.AnagramRepository;
+import com.marcin.anagramator.repository.AlphabetizedRepository;
 
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest(webEnvironment=WebEnvironment.NONE)
 public class AnagramEntryServiceImplUnitTest {
 	
 	@Mock
-	private AnagramRepository repository;
+	private AlphabetizedRepository repository;
 		
 	@InjectMocks
 	private AnagramEntryServiceImpl service;
 		
+	private List<Anagram> mockListOfAnagrams;
+	private Alphabetized aMockAlphabetized;
+	
 	@Before
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
-	}
-	
-	@Test
-	public void saveAnagramsListShouldReturnOK() {
 		
 		Anagram anagram1 = new Anagram();
-		anagram1.setAnagramMarker(1);
 		anagram1.setAnagramWord("axxxzzz");
 		Anagram anagram2 = new Anagram();
-		anagram2.setAnagramMarker(1);
 		anagram2.setAnagramWord("zzzaxxx");
 		Anagram anagram3 = new Anagram();
-		anagram3.setAnagramMarker(1);
 		anagram3.setAnagramWord("xxxazzz");
 		
-		List<Anagram> mockListOfAnagrams = new ArrayList<>();
+		mockListOfAnagrams = new ArrayList<>();
 		mockListOfAnagrams.add(anagram1);
 		mockListOfAnagrams.add(anagram2);
 		mockListOfAnagrams.add(anagram3);
 		
-		Alphabetized aMockAlphabetized = new Alphabetized();
+		aMockAlphabetized = new Alphabetized();
 		aMockAlphabetized.setAlphabetizedWord("axxxzzz");
 		aMockAlphabetized.setAnagrams(mockListOfAnagrams);
-		
-		when(repository.getAlphabetized(any(String.class))).thenReturn(new Alphabetized());		
-		when(repository.saveAlphabetized(any(Alphabetized.class))).thenReturn(aMockAlphabetized);
-		
-		Set<String> newSetOfAnagrams = service.extractAndSaveAnagrams("axxxzzz zzzaxxx xxxazzz");
+	}
+	
+	@Test
+	public void extractAndSaveAnagramsListShouldReturnNonEmptySetWithSingleAnagram() {					
+		when(repository.saveAlphabetized(any(Alphabetized.class))).thenReturn(aMockAlphabetized);		
+		Set<String> actual = service.extractAndSaveAnagrams("eden", "need");
+		Set<String> expected = Set.of("need");		
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void extractAndSaveAnagramsListShouldReturnNonEmptySet() {					
+		when(repository.saveAlphabetized(any(Alphabetized.class))).thenReturn(aMockAlphabetized);			
+		Set<String> newSetOfAnagrams = service.extractAndSaveAnagrams("xaxxzzz", "axxxzzz zzzaxxx xxxazzz");
 		Set<String> fetched = aMockAlphabetized.getAnagrams()
 				.stream()
 				.map(anagram -> anagram.getAnagramWord())
-				.collect(Collectors.toSet());
-		
+				.collect(Collectors.toSet());	
+		assertEquals(fetched, newSetOfAnagrams);
+	}
+	
+	@Test
+	public void extractAndSaveAnagramsListShouldReturnNonEmptySetAfterProperSplit() {					
+		when(repository.saveAlphabetized(any(Alphabetized.class))).thenReturn(aMockAlphabetized);			
+		Set<String> newSetOfAnagrams = service.extractAndSaveAnagrams("xaxxzzz", "axxxzzz  zzzaxxx    xxxazzz");
+		Set<String> fetched = aMockAlphabetized.getAnagrams()
+				.stream()
+				.map(anagram -> anagram.getAnagramWord())
+				.collect(Collectors.toSet());		
+		assertEquals(fetched, newSetOfAnagrams);
+	}
+	
+	@Test
+	public void extractAndSaveAnagramsListShouldReturnEmptySet() {								
+		Set<String> newSetOfAnagrams = service.extractAndSaveAnagrams("zzz", "axxxzzz zzzaxxx xxxazzz");
+		Set<String> fetched = new HashSet<>();				
 		assertEquals(fetched, newSetOfAnagrams);
 	}
 }

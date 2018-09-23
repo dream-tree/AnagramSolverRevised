@@ -6,6 +6,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.HashSet;
@@ -29,7 +30,7 @@ import com.marcin.anagramator.business.service.AnagramEntryServiceImpl;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(UserEntryController.class)
-public class ControllersUnitMockTest {
+public class UserEntryControllerUnitMockTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -50,38 +51,16 @@ public class ControllersUnitMockTest {
 	}
 		
 	@Test
-	public void processFormShouldReturnResultsNewEntryView() throws Exception {
-
-		String mockUserSetOfAnagrams = "zzzaaqq qqaazzz";
-		Set<String> mockUserAnagrams = new HashSet<String>() {{ add("zzzaaqq"); add("qqaazzz"); }};
+	public void validateNewEntryShouldReturnResultsNewEntryJspPage() throws Exception {
 			
-		when(userEntry.getStringOfAnagrams()).thenReturn(mockUserSetOfAnagrams);
-		when(service.extractAndSaveAnagrams(any(String.class))).thenReturn(mockUserAnagrams);
-		
+		when(service.extractAndSaveAnagrams(any(String.class), any(String.class))).thenReturn(new HashSet<String>());
+		String userInput = "aabb";
 		mockMvc
-			.perform(post("/validateNewEntry", model, userEntry, theBindingResult))
+			.perform(get("/validateNewEntry").param("userInput", userInput))
 			.andExpect(status().isOk())
 			.andReturn();
 
-		String outcome = controller.processForm(model, userEntry, theBindingResult);
-		assertThat(outcome, is(equalTo("resultsNewEntry")));
+		String outcome = controller.validateNewEntry(userInput, model, userEntry, theBindingResult);
+		assertThat(outcome, is(equalTo("results-new-entry")));
 	}	
-	
-	@Test
-	public void processFormShouldReturnResultErrorView() throws Exception {
-
-		String mockUserSetOfAnagrams = "anagram noAnagramOfAnagram";
-		Set<String> mockUserAnagrams = new HashSet<String>();
-			
-		when(userEntry.getStringOfAnagrams()).thenReturn(mockUserSetOfAnagrams);
-		when(service.extractAndSaveAnagrams(any(String.class))).thenReturn(mockUserAnagrams);
-		
-		mockMvc
-			.perform(post("/validateNewEntry", model, userEntry, theBindingResult))
-			.andExpect(status().isOk())
-			.andReturn();
-
-		String outcome = controller.processForm(model, userEntry, theBindingResult);
-		assertThat(outcome, is(equalTo("resultsError")));
-	}
 }
