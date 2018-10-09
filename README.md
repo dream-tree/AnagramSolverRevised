@@ -2,8 +2,8 @@
 
 AnagramSolverExtended project based on the AnagramSolver project and AnagramSolverExtended.</br>
 This version allows the removal of existing anagrams from the database. There were also made some config and html/css improvements.</br>
-You can take a look at the video showing this app running (ver. 3, update to ver. 4 soon):
-<a href="https://youtu.be/VvoQV1HuwdM" target="_blank">AnagramSolverExtendedVideo</a> (YouTube link, size: 3,28 MB, HD).
+You can take a look at the video showing this app running here:
+<a href="https://youtu.be/VvoQV1HuwdM" target="blank">AnagramSolverExtendedVideo</a> (YouTube link, size: 3,28 MB, HD).
 
 ----
 
