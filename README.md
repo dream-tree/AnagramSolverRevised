@@ -1,4 +1,4 @@
-# AnagramSolverRevised, ver. 4.
+# AnagramSolverRevised
 
 AnagramSolverRevised project based on the AnagramSolver and AnagramSolverExtended sub-projects.</br>
 This version allows the removal of existing anagrams from the database. There were also made some config and html/css improvements.</br>
