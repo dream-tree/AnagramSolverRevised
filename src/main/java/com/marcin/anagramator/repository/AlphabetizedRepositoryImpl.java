@@ -24,10 +24,7 @@ public class AlphabetizedRepositoryImpl implements AlphabetizedRepository {
 	@PersistenceContext
 	private EntityManager entityManager;
 	private static final Logger LOGGER = LoggerFactory.getLogger(AlphabetizedRepositoryImpl.class);
-	
-	/**
-	 * {@inheritDoc}
-	 */
+
 	@Override
 	@Transactional
 	public Alphabetized getAlphabetized(String alphabetizedQuery) {	
@@ -46,10 +43,7 @@ public class AlphabetizedRepositoryImpl implements AlphabetizedRepository {
 		}
 		return tempAlphabetized;
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
+	
 	@Override
 	@Transactional
 	public Alphabetized saveAlphabetized(Alphabetized userAlphabetizedObject) {
@@ -60,10 +54,7 @@ public class AlphabetizedRepositoryImpl implements AlphabetizedRepository {
 		}
 		return userAlphabetizedObject;
 	}
-		
-	/**
-	 * {@inheritDoc}
-	 */
+
 	@Override
 	@Transactional
 	public void deleteAlphabetized(String alphabetizedWord) {
