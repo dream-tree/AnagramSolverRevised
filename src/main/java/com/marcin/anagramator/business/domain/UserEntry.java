@@ -6,7 +6,7 @@ import javax.validation.constraints.Pattern;
 import org.springframework.stereotype.Component;
 
 /**
- * Class serves as a data holder for user input, i.e. the list of anagrams as a single string.
+ * Serves as a data holder for user input, i.e. the list of anagrams as a single string.
  * List of anagrams is to be added to the database after the process of validation.
  * User input is splitted into separate anagrams and validated in the further process.
  * 
