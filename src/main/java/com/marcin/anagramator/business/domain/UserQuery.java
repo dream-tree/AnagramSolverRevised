@@ -8,7 +8,7 @@ import javax.validation.constraints.Pattern;
 import org.springframework.stereotype.Component;
 
 /**
- * Class serves as a data holder for user input, i.e. query from the web page.
+ * Serves as a data holder for user input, i.e. query from the web page.
  * 
  * @author dream-tree
  * @version 4.00, June-September 2018
