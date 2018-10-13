@@ -4,7 +4,7 @@ import com.marcin.anagramator.domain.Alphabetized;
 
 /**
  * Provides the interface for CRUD operations and common queries, i.e.
- * for accessing, adding and deleting an Alphabeized objects.
+ * for accessing, adding and deleting an Alphabetized object.
  * 
  * @author dream-tree
  * @version 4.00, June-September 2018
