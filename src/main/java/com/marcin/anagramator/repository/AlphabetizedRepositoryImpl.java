@@ -11,8 +11,9 @@ import org.springframework.stereotype.Repository;
 import com.marcin.anagramator.domain.Alphabetized;
 
 /**
- * Repository implementing the {@link AlphabetizedRepository} interface
- * for CRUD operations and the common queries.
+ * Provides the implementation of {@link AlphabetizedRepository} interface
+ * for CRUD operations and the common queries, i.e.
+ * for accessing, adding and deleting an Alphabetized object.
  * This implementation uses the Hibernate ORM framework.
  * 
  * @author dream-tree
