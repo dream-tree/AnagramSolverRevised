@@ -3,7 +3,8 @@ package com.marcin.anagramator.repository;
 import com.marcin.anagramator.domain.Alphabetized;
 
 /**
- * Base interface for CRUD operations and common queries.
+ * Provides the interface for CRUD operations and common queries, i.e.
+ * for accessing, adding and deleting an Alphabeized objects.
  * 
  * @author dream-tree
  * @version 4.00, June-September 2018
